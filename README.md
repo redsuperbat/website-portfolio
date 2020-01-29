@@ -1,24 +1,5 @@
-# portfolio
+# Website Portfolio
+This is the codebase for my own website [https://netterberg.tech](https://netterberg.tech). Written in html, css and javascript with the framework Vue.js and library Vuetify. Please visit the website for more visual information.
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Aim
+Aim of the project was to create a portfolio-website when looking for work. 
