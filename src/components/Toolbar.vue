@@ -9,22 +9,19 @@
                 </div>
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-containter v-if="false">
-                <h5 class="display-3">Hello</h5>
-            </v-containter>
              <v-row v-if="currentPage != 'contact'" justify="space-around">
-                <v-btn v-for="(item, name) in header" :key = name @click="scroll(name)" depressed color="transparent">
-                    <span v-if="name===currentPage">|</span><h4 :class="name===currentPage?'selected':'clickable'" >{{item}}</h4>
+                <v-btn v-for="(item, name) in header" :key = name @click="scroll(name)" depressed color="transparent" class="clickable">
+                    <span v-if="name===currentPage">|</span><h4 >{{item}}</h4>
                 </v-btn>
             </v-row>
             <v-spacer></v-spacer>
             <div class="langbuttons">
-              <v-btn @click="switchLang('en')" depressed color="transparent" :class="{'selected' : lang==='en', 'clickable' : lang==='sv'}" :disabled="lang==='en' ? true:false">
+              <v-btn @click="switchLang('en')" depressed color="transparent" class="clickable" :disabled="checkLang('en')">
                   <span :class="{'white-background' : textColor}">EN</span>
               </v-btn>
               <span>|</span>
-              <v-btn @click="switchLang('sv')" depressed color="transparent" :class="lang==='sv'?'selected':'clickable'" :disabled="lang==='sv' ? true:false" >
-                  <span :class="{'white-background' : textColor}">SV</span>
+              <v-btn @click="switchLang('sv')" depressed color="transparent" class="clickable" :disabled="checkLang('sv')" >
+                  <span :class="{'white-background' : textColor}" >SV</span>
               </v-btn>
             </div>
         </v-app-bar>
@@ -72,6 +69,9 @@ export default {
   methods: {
     openDrawer: function () {
       this.drawer = !this.drawer
+    },
+    checkLang: function (l) {
+      return (l === this.lang)
     },
     switchLang: function (lang) {
       this.$emit('switchLang', lang)
