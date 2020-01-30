@@ -5,14 +5,14 @@
     <v-container>
           <v-form
             ref="form">
-            <v-text-field
+            <!-- <v-text-field
             outlined
             :placeholder="contactPage.placeholder_email"
             :label="contactPage.email"
             v-model="email"
             :rules="inputRules"
             >
-            </v-text-field>
+            </v-text-field> -->
             <v-text-field
             outlined
             :placeholder="contactPage.placeholder_subject"
@@ -25,7 +25,7 @@
             :placeholder="contactPage.placeholder_message"
             v-model="message"
             outlined
-            height="250"
+            height="335"
             >
             </v-textarea>
             <v-row justify="end" align="end">
