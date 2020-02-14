@@ -25,13 +25,22 @@
 <script>
 export default {
   name: 'Start',
+  created () {
+    this.parallaxHeight = window.innerHeight
+    window.addEventListener('resize', this.myEventHandler)
+  },
+  destroyed () {
+    window.removeEventListener('resize', this.myEventHandler)
+  },
+  methods: {
+    myEventHandler () {
+      this.parallaxHeight = window.innerHeight
+    }
+  },
   data: function () {
     return {
       parallaxHeight: 0
     }
-  },
-  created: function () {
-    this.parallaxHeight = window.innerHeight
   },
   props: {
     homePage: Object
