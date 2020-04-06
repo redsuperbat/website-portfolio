@@ -2,10 +2,12 @@
   <div ref="main">
     <h1 class="display-2" style="margin-top:45px">{{ projectPage.title }}</h1>
     <v-container id="main">
-      <ProjectCard class="ProjectCard" :cardInfo="projectPage.card1" />
-      <ProjectCard class="ProjectCard" :cardInfo="projectPage.card2" />
-      <ProjectCard class="ProjectCard" :cardInfo="projectPage.card3" />
-      <ProjectCard class="ProjectCard" :cardInfo="projectPage.card4" />
+      <ProjectCard
+        class="ProjectCard"
+        v-for="(card, name) in projectPage.cards"
+        :key="name"
+        :cardInfo="card"
+      />
     </v-container>
   </div>
 </template>
