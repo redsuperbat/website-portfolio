@@ -1,19 +1,8 @@
-import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
+import Vue from "vue";
+import Vuetify from "vuetify/lib";
 
-import colors from 'vuetify/lib/util/colors'
+import colors from "vuetify/lib/util/colors";
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
-export default new Vuetify({
-  theme: {
-    themes: {
-      light: {
-        background: colors.red.accent4
-      },
-      dark: {
-        background: colors.red.darken4
-      }
-    }
-  }
-})
+export default new Vuetify({});

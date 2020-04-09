@@ -30,7 +30,7 @@
       "span1": "Engineering student in sociotechnical systems at Uppsala University. The master specializes in IT and I have a big interest in ",
       "span2": "AI ",
       "span3": "and ",
-      "span4": "machine learning."
+      "span4": "Web-development."
     },
     "scroll": "Scroll down..."
   },
@@ -64,6 +64,13 @@
         "url": "https://github.com/redsuperbat/Hamburger-app",
         "img": "https://i.imgur.com/P6G3z1j.png",
         "language": "html, css, javascript"
+      },
+      "card5": {
+        "title": "Stock Manager",
+        "description": "Web-app I made as a part of a work-application. This app features real time data updates with websockets that are connected to a mysql database. Written in vuejs, node and mySql.",
+        "url": "",
+        "img": "https://i.imgur.com/R0E095R.jpg",
+        "langugage": "html, css, javascript, mysql"
       }
     }
   }
