@@ -68,7 +68,7 @@
       "card5": {
         "title": "Stock Manager",
         "description": "Web-app I made as a part of a work-application. This app features real time data updates with websockets that are connected to a mysql database. Written in vuejs, node and mySql.",
-        "url": "",
+        "url": "https://github.com/redsuperbat/arbetsprov",
         "img": "https://i.imgur.com/R0E095R.jpg",
         "langugage": "html, css, javascript, mysql"
       }

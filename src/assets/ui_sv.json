@@ -68,7 +68,7 @@
       "card5": {
         "title": "Lagervaruhanterare",
         "description": "Webb-app jag skapade som en del av ett sommarjobbssök. Denna app har uppdateringar i realtid med hjälp av websockets som är anslutna till en mysql-databas. Skrivet i vuejs, node och mySql.",
-        "url": "",
+        "url": "https://github.com/redsuperbat/arbetsprov",
         "img": "https://i.imgur.com/R0E095R.jpg",
         "language": "html, css, javascript, mysql"
       }
