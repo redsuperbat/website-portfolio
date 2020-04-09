@@ -73,11 +73,20 @@ export default {
   align-items: center;
   grid-area: footer;
   color: transparent;
-  transition: color 1s, transform 1s;
+  animation: bob 1s alternate ease-in-out infinite;
+  transition: color 1s;
+}
+
+@keyframes bob {
+  from {
+    transform: translateY(-10px);
+  }
+  to {
+    transform: translateY(0px);
+  }
 }
 
 .icon-and-text:hover {
-  transform: translateY(-10px);
   color: white;
 }
 

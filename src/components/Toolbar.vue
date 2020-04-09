@@ -32,60 +32,30 @@
         </v-btn>
       </v-row>
       <v-spacer></v-spacer>
-      <div class="langbuttons">
-        <v-btn
-          @click="switchLang('en')"
-          depressed
-          color="transparent"
-          class="clickable"
-          :disabled="checkLang('en')"
-        >
-          <span :class="{ 'white-background': textColor }">EN</span>
-        </v-btn>
-        <span>|</span>
-        <v-btn
-          @click="switchLang('sv')"
-          depressed
-          color="transparent"
-          class="clickable"
-          :disabled="checkLang('sv')"
-        >
-          <span :class="{ 'white-background': textColor }">SV</span>
-        </v-btn>
-      </div>
+      <LangButtons
+        :lang="lang"
+        :textColor="textColor"
+        @switchLang="switchLang"
+      />
     </v-app-bar>
 
     <!-- Mobile Mode -->
-    <div class="mobile hidden-md-and-up">
-      <div class="hamburger-icon">
-        <v-btn icon text color="white" @click="openDrawer">
-          <v-icon size="50">view_headline</v-icon>
-        </v-btn>
-      </div>
-      <v-navigation-drawer color="rgba(106,13,173,0.5)" fixed v-model="drawer">
-        <v-list>
-          <v-list-item v-for="(item, name) in header" :key="name">
-            <v-btn
-              @click="
-                scroll(name);
-                openDrawer();
-              "
-              depressed
-              color="transparent"
-            >
-              <span v-if="name === currentPage">|</span>
-              <h4 :class="name === currentPage ? 'selected' : 'clickable'">
-                {{ item }}
-              </h4>
-            </v-btn>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-    </div>
+    <MobileDropDown
+      class="hidden-md-and-up"
+      :open="drawer"
+      @openDrawer="openDrawer"
+      @scroll="scroll"
+      :header="header"
+      :lang="lang"
+      :textColor="textColor"
+      @switchLang="switchLang"
+    />
   </nav>
 </template>
 
 <script>
+import MobileDropDown from "./MobileDropDown";
+import LangButtons from "./LangButtons";
 export default {
   name: "Toolbar",
   props: {
@@ -94,6 +64,10 @@ export default {
     lang: String,
     topScroll: Boolean,
     textColor: Boolean
+  },
+  components: {
+    MobileDropDown,
+    LangButtons
   },
   data: function() {
     return {
@@ -104,10 +78,9 @@ export default {
     openDrawer: function() {
       this.drawer = !this.drawer;
     },
-    checkLang: function(l) {
-      return l === this.lang;
-    },
+
     switchLang: function(lang) {
+      console.log("Trying to switch to ", lang);
       this.$emit("switchLang", lang);
     },
     setPage: function(name) {
@@ -131,11 +104,6 @@ span {
   color: white;
 }
 
-.mobile {
-  background-color: transparent !important;
-  border-color: transparent !important;
-}
-
 .clickable:hover {
   transform: scale(1.15);
   text-decoration: none;
@@ -157,10 +125,6 @@ span {
   right: 0;
   margin-top: 25px;
   margin-right: 40px;
-}
-
-.langbuttons {
-  color: aqua;
 }
 
 .white-background {
