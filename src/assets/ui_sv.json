@@ -36,42 +36,42 @@
   },
   "projectPage": {
     "title": "Portfolio",
-    "cards": {
-      "card1": {
+    "cards": [
+      {
         "title": "Vinkällaren",
         "description": "Detta är en mobilapplikation som hjälper dig att hålla reda på vinerna du äger. Skrivet av mig med Googles programspråk Dart, med ett ramverk som heter Flutter.",
         "url": "https://github.com/redsuperbat/wine_cellar",
         "img": "https://i.imgur.com/bXYqcne.png",
         "language": "Dart"
       },
-      "card2": {
+      {
         "title": "Zigma Böcker",
         "description": "Mobilapplikation for andrahandsförsäljning av kurslitteratur, skriven i Dart med ramverket Flutter. Utvecklade den här appen som en del av min kandidatexamen. Fullständig rapport hittas på github.",
         "url": "https://github.com/redsuperbat/zigma",
         "img": "https://i.imgur.com/rZNhjqC.png",
         "language": "Dart"
       },
-      "card3": {
+      {
+        "title": "Lagervaruhanterare",
+        "description": "En webapplikation jag skapade under ett arbetsprov som en del av ett sommarjobbssök. Denna app har uppdateringar i realtid med hjälp av websockets som är anslutna till en mysql-databas. Skrivet i vuejs, node och mysql.",
+        "url": "https://github.com/redsuperbat/arbetsprov",
+        "img": "https://i.imgur.com/R0E095R.jpg",
+        "language": "html, css, javascript, mysql"
+      },
+      {
         "title": "Bildigenkänning",
         "description": "Bildigenkänningsalgoritm som känner igen bilder genom att träna en modell från en enorm uppsättning bilder. Koden använder keras-biblioteket som körs ovanpå tensorflow.",
         "url": "https://github.com/redsuperbat/CIFAR-deep-learning",
         "img": "https://i.imgur.com/O9Zy2r3.png",
         "language": "Python"
       },
-      "card4": {
+      {
         "title": "Beställningsapplikation",
         "description": "Detta är ett projekt som gjorts av mig och 4 andra studenter för en kurs i människa-datorinteraktion. Målet var att göra en användarvänlig beställningsapp för hamburgare, samt att vara ett verktyg för orderhantering i köket.",
         "url": "https://github.com/redsuperbat/Hamburger-app",
         "img": "https://i.imgur.com/P6G3z1j.png",
         "language": "html, css, javascript"
-      },
-      "card5": {
-        "title": "Lagervaruhanterare",
-        "description": "Webb-app jag skapade som en del av ett sommarjobbssök. Denna app har uppdateringar i realtid med hjälp av websockets som är anslutna till en mysql-databas. Skrivet i vuejs, node och mySql.",
-        "url": "https://github.com/redsuperbat/arbetsprov",
-        "img": "https://i.imgur.com/R0E095R.jpg",
-        "language": "html, css, javascript, mysql"
       }
-    }
+    ]
   }
 }

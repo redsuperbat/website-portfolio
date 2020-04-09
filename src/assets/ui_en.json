@@ -36,42 +36,42 @@
   },
   "projectPage": {
     "title": "Portfolio",
-    "cards": {
-      "card1": {
+    "cards": [
+      {
         "title": "Wine Cellar",
         "description": "This is an mobile application that helps you keep track of the wines that you own. Written by me in Google's language dart, with the SDK Flutter",
         "url": "https://github.com/redsuperbat/wine_cellar",
         "img": "https://i.imgur.com/bXYqcne.png",
         "language": "Dart"
       },
-      "card2": {
+      {
         "title": "Zigma Books",
         "description": "Second hand book selling Mobile application written in Dart with Flutter SDK. Developed this app as a part of my bachelors dissertion. Full report found on github.",
         "url": "https://github.com/redsuperbat/zigma",
         "img": "https://i.imgur.com/rZNhjqC.png",
         "language": "Dart"
       },
-      "card3": {
+      {
+        "title": "Stock Manager",
+        "description": "Web-app I made as a part of a work-application. This app features real time data updates with websockets that are connected to a mysql database. Written in vuejs, node and mySql.",
+        "url": "https://github.com/redsuperbat/arbetsprov",
+        "img": "https://i.imgur.com/R0E095R.jpg",
+        "language": "html, css, javascript, mysql"
+      },
+      {
         "title": "Image Recognition",
         "description": "Deep learning algorithm that recognizes pictures by training a model from a huge set of pictures. The code utilizes the keras library which is able to run on top of tensorflow.",
         "url": "https://github.com/redsuperbat/CIFAR-deep-learning",
         "img": "https://i.imgur.com/O9Zy2r3.png",
         "language": "Python"
       },
-      "card4": {
+      {
         "title": "Ordering Application",
         "description": "This is a project made by 5 students for a course in human-computer interaction. The goal was to make a user friendly burger ordering app, as well as being a tool for order-slip-management in the kitchen.",
         "url": "https://github.com/redsuperbat/Hamburger-app",
         "img": "https://i.imgur.com/P6G3z1j.png",
         "language": "html, css, javascript"
-      },
-      "card5": {
-        "title": "Stock Manager",
-        "description": "Web-app I made as a part of a work-application. This app features real time data updates with websockets that are connected to a mysql database. Written in vuejs, node and mySql.",
-        "url": "https://github.com/redsuperbat/arbetsprov",
-        "img": "https://i.imgur.com/R0E095R.jpg",
-        "langugage": "html, css, javascript, mysql"
       }
-    }
+    ]
   }
 }
