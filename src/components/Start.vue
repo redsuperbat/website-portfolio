@@ -1,7 +1,7 @@
 <template>
   <v-parallax
     :height="parallaxHeight"
-    :src="require('@/assets/test2.png')"
+    :src="require('@/assets/background.png')"
     alt="Max Netterberg"
   >
     <div class="title-column">

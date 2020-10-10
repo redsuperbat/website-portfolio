@@ -8,41 +8,40 @@
 
 <script>
 export default {
-  name: "HamburgerIcon",
+  name: 'HamburgerIcon',
   props: {
-    open: Boolean
+    open: Boolean,
   },
   methods: {
     handleClick() {
-      this.$emit("openDrawer");
-    }
-  }
+      this.$emit('openDrawer');
+    },
+  },
 };
 </script>
 
 <style scoped>
 .burger-icon {
   width: 40px;
-  height: 30px;
+  height: 35px;
   background-color: transparent;
+  padding-top: 2px;
+  padding-bottom: 2px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
   z-index: 1;
 }
-
 .top-bent {
   transform: rotateZ(45deg);
 }
-
 .bottom-bent {
-  transform: rotateZ(-45deg) translateX(-3.5px);
+  transform: rotateZ(-45deg) translateX(-3px);
 }
 .middle-invis {
   opacity: 0;
 }
-
 .top,
 .middle,
 .bottom,
@@ -52,7 +51,7 @@ export default {
   transform-origin: 0 0;
   padding: 2px;
   width: 100%;
-  background-color: white;
   transition: 0.5s ease-in-out;
+  background-color: white;
 }
 </style>

@@ -20,7 +20,7 @@
   },
   "aboutPage": {
     "title": "Om mig",
-    "paragraph1": "Jag går fjärde året på min utbildning i Civilingenjörs-programmet i System Teknik och Samhälle (STS). STS-programmet kombinerar samhälle med ingenjörs-världen och ger breda perspektiv. STS innehåller många samhällskurser vilket gör att vi studenter lär oss titta kritiskt både på såväl kod som akademiska texter..",
+    "paragraph1": "Jag går femte året på min utbildning i Civilingenjörs-programmet i System Teknik och Samhälle (STS). STS-programmet kombinerar samhälle med ingenjörs-världen och ger breda perspektiv. STS innehåller många samhällskurser vilket gör att vi studenter lär oss titta kritiskt både på såväl kod som akademiska texter..",
     "paragraph2": "Teknik, samhälle och gastronomi är mina tre största intressen. Det reflekteras i de projekt jag har gjort och jag tycker det är otroligt intressant hur man kan kombinera och uppnå synergieffekter med bra design av användargränssnitt, gastronomisk vetenskap och programmering. Projekt som 'Vinkällaren' är ett exempel på slutresultatet av just denna kombination av intressen.",
     "paragraph3": "I framtiden ser jag mig själv omgiven av den senaste teknologin där jag jobbar i teknikens framkant. Automatisering med hjälp av Statistiskt lärande & Djuplärande som tillsammans blir Maskininlärning känns som den framtid jag vill ta del av och utveckla med likasinnade. Om du känner samma sak tveka inte att kontakta mig.",
     "resume": "Ladda ner mitt CV"
@@ -71,6 +71,13 @@
         "url": "https://github.com/redsuperbat/Hamburger-app",
         "img": "https://i.imgur.com/P6G3z1j.png",
         "language": "html, css, javascript"
+      },
+      {
+        "title": "Url förkortare",
+        "description": "Jag utmanade mig själv att göra en url-förkortare så fort jag kunde. Två och en halv timme senare kom jag på det här. Med den här webbplatsen kan du förkorta dina webbadresser och skapa din egen efterföljare. Skrivet i Nodejs.",
+        "url": "https://github.com/redsuperbat/url-shortener",
+        "img": "https://i.imgur.com/mGUAAtp.jpg",
+        "language": "javascript, Nodejs"
       }
     ]
   }

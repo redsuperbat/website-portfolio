@@ -20,7 +20,7 @@
   },
   "aboutPage": {
     "title": "About",
-    "paragraph1": "I am currently studying the fourth year of the Engineer program in Sociotechnical Systems (STS). The STS program intertwines society and engineering and provides broad perspectives. STS takes a lot of social science courses within the program, which in turn makes us look critically at both code and academic texts.",
+    "paragraph1": "I am currently studying the fifth year of the Engineer program in Sociotechnical Systems (STS). The STS program intertwines society and engineering and provides broad perspectives. STS takes a lot of social science courses within the program, which in turn makes us look critically at both code and academic texts.",
     "paragraph2": "Technology, society and gastronomy are my three biggest interests. This reflects in the projects I have been working on. I am incredibly interested in how to combine good user experience design, gastronomic science and programming. Projects like 'Wine Cellar' is a good example of the end result because of this interest.",
     "paragraph3": "In the future, I see myself surrounded by new technology where I work at the forefront. Automation with the help of statistical learning & deep learning that together become machine learning feels like the future I want to share and develop with like-minded people. If you feel the same don't hesitate to contact me.",
     "resume": "Download my resume"
@@ -71,6 +71,13 @@
         "url": "https://github.com/redsuperbat/Hamburger-app",
         "img": "https://i.imgur.com/P6G3z1j.png",
         "language": "html, css, javascript"
+      },
+      {
+        "title": "Url shortener",
+        "description": "I challanged myself in making a url-shortener as fast as i could. Two and half hours later I came up with this. Using this site you can shorten your urls and create your own slug. Written in Nodejs.",
+        "url": "https://github.com/redsuperbat/url-shortener",
+        "img": "https://i.imgur.com/mGUAAtp.jpg",
+        "language": "javascript, Nodejs"
       }
     ]
   }
