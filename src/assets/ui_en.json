@@ -78,6 +78,13 @@
         "url": "https://github.com/redsuperbat/url-shortener",
         "img": "https://i.imgur.com/mGUAAtp.jpg",
         "language": "javascript, Nodejs"
+      },
+      {
+        "title": "ush.se chrome extension",
+        "description": "A chrome extension that consumes the url - shortener api. Uses parcel as a bundler and can generate a qr-code for the shortened url. The qr and link can be copied to clipboard.",
+        "url": "https://github.com/redsuperbat/url-shortener-chrome-extension",
+        "img": "https://i.imgur.com/jpPzdXy.jpg",
+        "language": "javascript, Nodejs"
       }
     ]
   }

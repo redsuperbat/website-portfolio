@@ -78,6 +78,13 @@
         "url": "https://github.com/redsuperbat/url-shortener",
         "img": "https://i.imgur.com/mGUAAtp.jpg",
         "language": "javascript, Nodejs"
+      },
+      {
+        "title": "ush.se chrome tillägg",
+        "description": "Ett chrome tillägg som använder sig av url-förkortnings api:et. Projektet använder en bundler som hetere Parcel och kan generera en qr-kod för den förkortade webbadressen. Qr-kod och förkortad länk kan kopieras till urklipp.",
+        "url": "https://github.com/redsuperbat/url-shortener-chrome-extension",
+        "img": "https://i.imgur.com/jpPzdXy.jpg",
+        "language": "javascript, Nodejs"
       }
     ]
   }
