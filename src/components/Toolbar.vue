@@ -1,46 +1,24 @@
 <template>
   <nav>
     <!-- Desktop Mode -->
-    <v-app-bar
-      fixed
-      flat
-      class="hidden-sm-and-down app-bar"
-      color="transparent"
-    >
-      <v-toolbar-title style="cursor:pointer" class="clickable">
-        <div @click="setPage('home')">
-          <span
-            style="font-weight:lighter"
-            :class="{ 'white-background': textColor }"
-            >Max</span
-          >
-          <span :class="{ 'white-background': textColor }">Netterberg</span>
-        </div>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-row v-if="currentPage != 'contact'" justify="space-around">
-        <v-btn
-          v-for="(item, name) in header"
-          :key="name"
-          @click="scroll(name)"
-          depressed
-          color="transparent"
-          class="clickable"
-        >
-          <span v-if="name === currentPage">|</span>
-          <h4>{{ item }}</h4>
-        </v-btn>
-      </v-row>
-      <v-spacer></v-spacer>
-      <LangButtons
-        :lang="lang"
-        :textColor="textColor"
-        @switchLang="switchLang"
-      />
-    </v-app-bar>
+
+    <h4>Max <span>Netterberg</span></h4>
+
+    <div class="flex align-center">
+      <Button
+        v-for="(item, key) in header"
+        :key="item"
+        class="p-button-text"
+        @click="route(key)"
+      >
+        {{ item }}
+      </Button>
+    </div>
+
+    <LangButtons />
 
     <!-- Mobile Mode -->
-    <MobileDropDown
+    <!-- <MobileDropDown
       class="hidden-md-and-up"
       :open="drawer"
       @openDrawer="openDrawer"
@@ -49,85 +27,69 @@
       :lang="lang"
       :textColor="textColor"
       @switchLang="switchLang"
-    />
+    /> -->
   </nav>
 </template>
 
-<script>
-import MobileDropDown from "./MobileDropDown";
-import LangButtons from "./LangButtons";
-export default {
-  name: "Toolbar",
-  props: {
-    header: Object,
-    currentPage: String,
-    lang: String,
-    topScroll: Boolean,
-    textColor: Boolean
-  },
-  components: {
-    MobileDropDown,
-    LangButtons
-  },
-  data: function() {
+<script lang="ts">
+import MobileDropDown from './MobileDropDown.vue';
+import LangButtons from './LangButtons.vue';
+import Button from 'primevue/button';
+import { computed, defineComponent } from 'vue';
+import { useLang } from '@/hooks/useLang';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+export default defineComponent({
+  setup() {
+    const { uiLabels } = useLang();
+    const header = computed(() => uiLabels.value.header);
+
+    const router = useRouter();
+    const route = (route: string) => {
+      console.log(route);
+
+      if (route === 'contact' || route === 'home') {
+        router.push('/' + route);
+        return;
+      }
+    };
+
     return {
-      drawer: false
+      header,
+      route,
     };
   },
-  methods: {
-    openDrawer: function() {
-      this.drawer = !this.drawer;
-    },
-
-    switchLang: function(lang) {
-      console.log("Trying to switch to ", lang);
-      this.$emit("switchLang", lang);
-    },
-    setPage: function(name) {
-      this.$emit("switchPage", name);
-    },
-    scroll: function(name) {
-      this.setPage(name);
-      this.$emit("scroll", name);
-    }
-  }
-};
+  name: 'Toolbar',
+  components: {
+    // MobileDropDown,
+    Button,
+    LangButtons,
+  },
+});
 </script>
 
-<style>
+<style lang="scss" scoped>
+nav {
+  display: grid;
+  grid-template:
+    'icon navigation lang'
+    / auto 1fr auto;
+  position: fixed;
+  width: 100%;
+  padding: 0 15px;
+}
 h4 {
   color: white;
-  text-shadow: -1px -1px 0 #000;
+  font-weight: lighter;
+  span {
+    font-weight: bold;
+  }
 }
-
-span {
-  color: white;
+.flex.align-center {
+  justify-content: space-evenly;
 }
-
-.clickable:hover {
-  transform: scale(1.15);
-  text-decoration: none;
-}
-
-.selected {
-  font-weight: bold;
-  font-size: 120%;
-  color: white;
-}
-
-.hamburger-icon:hover {
-  transform: scale(1.15);
-}
-
-.hamburger-icon {
-  position: absolute;
-  z-index: 10;
-  right: 0;
-  margin-top: 25px;
-  margin-right: 40px;
-}
-
-.white-background {
-  color: black;
+img {
+  height: 40px;
+  width: auto;
 }
 </style>

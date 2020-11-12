@@ -1,55 +1,70 @@
 <template>
-    <div id="main" ref="main">
-        <img src="@/assets/about-test.png" alt="Programming" height="400" v-if="$vuetify.breakpoint.mdAndUp">
-        <div :style="$vuetify.breakpoint.mdAndUP ? 'width:400px' : 'width:350px'">
-           <h1 class="display-2" style="margin-bottom:25px" ref="title">{{aboutPage.title}}</h1>
-           <div><p>{{aboutPage.paragraph1}}</p></div>
-           <div><p>{{aboutPage.paragraph2}}</p></div>
-           <div><p>{{aboutPage.paragraph3}}</p></div>
-           <div class="cv-btn">
-            <v-btn color="#320032" outlined href="https://drive.google.com/file/d/1HWIkQeoJBltslr3E5vWIDSHCf-g-s8Wb/view?usp=sharing" target="_blank">
-              <div>{{aboutPage.resume}}</div>
-            </v-btn>
-           </div>
-        </div>
+  <div id="main">
+    <img src="@/assets/images/about-test.png" alt="Programming" />
+    <div class="flex-column align-center">
+      <h1>
+        {{ aboutPage.title }}
+      </h1>
+      <p>{{ aboutPage.paragraph1 }}</p>
+
+      <p>{{ aboutPage.paragraph2 }}</p>
+
+      <p>{{ aboutPage.paragraph3 }}</p>
+      <Button
+        href="https://drive.google.com/file/d/1HWIkQeoJBltslr3E5vWIDSHCf-g-s8Wb/view?usp=sharing"
+        target="_blank"
+        class="p-button-outlined"
+      >
+        {{ aboutPage.resume }}
+      </Button>
     </div>
+  </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { useLang } from '@/hooks/useLang';
+import { computed, defineComponent } from 'vue';
+import Button from 'primevue/button';
+
+export default defineComponent({
   name: 'About',
-  props: {
-    aboutPage: Object
+  setup() {
+    const { uiLabels } = useLang();
+    const aboutPage = computed(() => uiLabels.value.aboutPage);
+    return { aboutPage };
   },
-  mounted: function () {
-    var offset = this.$refs.main.offsetTop
-    this.$emit('titleOffset', offset)
-  }
-}
+  components: {
+    Button,
+  },
+});
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
 #main {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  place-items: center;
+  background: white;
+  gap: 20px;
+  padding: 10px;
 }
 
 p {
-  color: #320032;
+  color: $primary-color;
   text-align: justify;
 }
 
-.cv-btn{
-  display: flex;
-  justify-content: center;
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
-
+div.flex-column {
+  padding: 10px;
+  max-width: 450px;
+}
 h1 {
   text-align: center;
-  color: #320032;
+  color: $primary-color;
 }
-
 </style>

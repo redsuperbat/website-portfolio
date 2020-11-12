@@ -1,69 +1,48 @@
 <template>
-  <v-parallax
-    :height="parallaxHeight"
-    :src="require('@/assets/background.png')"
-    alt="Max Netterberg"
-  >
-    <div class="title-column">
-      <div class="desc" style="">
-        <span class="display-2">Max Netterberg</span>
-        <div class="hidden-sm-and-down">
-          <span class="title">{{ homePage.description.span1 }}</span>
-          <span class="display-2" style="color:orange; font-weight:bold">{{
-            homePage.description.span2
-          }}</span>
-          <span class="title">{{ homePage.description.span3 }}</span>
-          <span class="display-1" style="color:aquamarine; font-weight:bold">{{
-            homePage.description.span4
-          }}</span>
-        </div>
-      </div>
-      <div class="icon-and-text">
-        <v-icon color="white" size="50" class="arrow-icon"
-          >keyboard_arrow_down</v-icon
-        >
-        <h1 class="overline scroll-text">{{ homePage.scroll }}</h1>
+  <div class="title-column">
+    <div class="desc" style="color:white;">
+      <h2>Max Netterberg</h2>
+      <div>
+        <span>{{ homePage.description.span1 }}</span>
+        <span style="color:orange; font-weight:bold"
+          >{{ homePage.description.span2 }}
+        </span>
+        <span>{{ homePage.description.span3 }}</span>
+        <span style="color:aquamarine; font-weight:bold">
+          {{ homePage.description.span4 }}
+        </span>
       </div>
     </div>
-  </v-parallax>
+    <div class="icon-and-text">
+      <i color="white" size="50" class="arrow-icon">keyboard_arrow_down</i>
+      <h1 class="overline scroll-text">{{ homePage.scroll }}</h1>
+    </div>
+  </div>
 </template>
 
-<script>
-export default {
-  name: "Start",
-  created() {
-    this.parallaxHeight = window.innerHeight;
-    window.addEventListener("resize", this.myEventHandler);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.myEventHandler);
-  },
-  methods: {
-    myEventHandler() {
-      this.parallaxHeight = window.innerHeight;
-    }
-  },
-  data: function() {
-    return {
-      parallaxHeight: 0
-    };
-  },
-  props: {
-    homePage: Object
-  }
-};
+<script lang="ts" setup>
+import { useLang } from '@/hooks/useLang';
+import { computed, defineComponent } from 'vue';
+
+const { uiLabels } = useLang();
+export const homePage = computed(() => uiLabels.value.homePage);
+
+export default {};
 </script>
 
 <style scoped>
 .title-column {
   height: 100vh;
+  background-image: url('../assets/images/background.png');
+  background-size: cover;
+  background-position: fixed;
   display: grid;
   grid-template-columns: 1fr 0.7fr;
   grid-template-rows: 1fr 1fr 0.2fr;
   grid-template-areas:
-    ".      info"
-    ".      info"
-    "footer footer";
+    '.      info'
+    '.      info'
+    'footer footer';
 }
 
 .icon-and-text {

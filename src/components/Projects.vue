@@ -1,39 +1,29 @@
 <template>
-  <div ref="main">
-    <h1 class="display-2" style="margin-top:45px">{{ projectPage.title }}</h1>
-    <v-container id="main">
-      <ProjectCard
-        class="ProjectCard"
-        v-for="(card, name) in projectPage.cards"
-        :key="name"
-        :cardInfo="card"
-      />
-    </v-container>
+  <h1 style="margin-top:45px">{{ projectPage.title }}</h1>
+  <div class="card-wrapper">
+    <ProjectCard
+      class="ProjectCard"
+      v-for="(card, name) in projectPage.cards"
+      :key="name"
+      :cardInfo="card"
+    />
   </div>
 </template>
 
-<script>
-import ProjectCard from "@/components/ProjectCard";
+<script setup lang="ts">
+import { useLang } from '@/hooks/useLang';
+import { computed, defineComponent } from 'vue';
+export { default as ProjectCard } from '@/components/ProjectCard.vue';
+const { uiLabels } = useLang();
+export const projectPage = computed(() => uiLabels.value.projectPage);
 
-export default {
-  components: {
-    ProjectCard
-  },
-  mounted: function() {
-    var offset = this.$refs.main.offsetTop;
-    this.$emit("setPortfolioOffset", offset);
-  },
-  props: {
-    projectPage: Object
-  }
-};
+export default {};
 </script>
 
 <style scoped>
-#main {
-  width: 100vw;
-  display: flex;
-  flex-wrap: wrap;
+.card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
 h1 {

@@ -1,5 +1,6 @@
 <template>
-  <v-container class="main">
+  <div id="main"></div>
+  <!-- <v-container class="main">
     <p
       :class="{
         headline: $vuetify.breakpoint.mdAndUp,
@@ -36,41 +37,41 @@
       </v-container>
     </v-card>
     <Footer />
-  </v-container>
+  </v-container> -->
 </template>
 
 <script>
-import Footer from "@/components/Footer";
+// import Footer from '@/components/Footer';
 
 export default {
-  name: "Contact",
+  name: 'Contact',
   components: {
-    Footer
+    // Footer,
   },
   data: function() {
     return {
       validEmail: false,
-      subject: "",
-      message: "",
-      email: "",
+      subject: '',
+      message: '',
+      email: '',
       inputRules: [
         v => !!v || this.contactPage.hint_required,
-        v => /.+@.+\..+/.test(v) || this.contactPage.hint_wrong
-      ]
+        v => /.+@.+\..+/.test(v) || this.contactPage.hint_wrong,
+      ],
     };
   },
   props: {
-    contactPage: Object
+    contactPage: Object,
   },
   methods: {
     submit: function() {
       window.location.href =
-        "mailto:max.netterberg@gmail.com?subject=" +
+        'mailto:max.netterberg@gmail.com?subject=' +
         this.subject +
-        "&body=" +
+        '&body=' +
         this.message;
-    }
-  }
+    },
+  },
 };
 </script>
 

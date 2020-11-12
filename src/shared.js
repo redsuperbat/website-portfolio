@@ -1,5 +1,5 @@
 'use strict'
-var shared = {
+const shared = {
   data: function () {
     return {
       lang: 'sv',

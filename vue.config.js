@@ -1,5 +1,12 @@
 module.exports = {
-  transpileDependencies: ["vuetify"],
-  lintOnSave: false,
-  productionSourceMap: false
+  productionSourceMap: false,
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `
+                @import "@/styles/_variables.scss";
+            `,
+      },
+    },
+  },
 };

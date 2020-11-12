@@ -1,37 +1,60 @@
 <template>
-  <div class="langbuttons">
-    <v-btn
-      @click="$emit('switchLang', 'en')"
-      text
-      class="clickable"
-      :disabled="checkLang('en')"
+  <div id="main" class="flex justify-center align-center">
+    <Button
+      class="p-button-text"
+      @click="setLang('en')"
+      :disabled="!isSv"
+      :class="{ active: !isSv }"
     >
-      <span :class="{ 'white-background': textColor }">EN</span>
-    </v-btn>
-    <span>|</span>
-    <v-btn
-      @click="$emit('switchLang', 'sv')"
-      text
-      class="clickable"
-      :disabled="checkLang('sv')"
+      EN
+    </Button>
+    <span />
+    <Button
+      class="p-button-text"
+      @click="setLang('sv')"
+      :disabled="isSv"
+      :class="{ active: isSv }"
     >
-      <span :class="{ 'white-background': textColor }">SV</span>
-    </v-btn>
+      SV
+    </Button>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    lang: String,
-    textColor: Boolean
+<script lang="ts">
+import { computed, defineComponent } from 'vue';
+import { useLang } from '@/hooks/useLang';
+import Button from 'primevue/button';
+import { useStore } from 'vuex';
+
+export default defineComponent({
+  setup() {
+    const store = useStore();
+    const { setLang, currentLang } = useLang();
+
+    const isSv = computed(() => currentLang.value === 'sv');
+
+    return {
+      setLang,
+      currentLang,
+      isSv,
+    };
   },
-  methods: {
-    checkLang: function(l) {
-      return l === this.lang;
-    }
-  }
-};
+  components: {
+    Button,
+  },
+});
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+#main {
+  width: 120px;
+}
+span {
+  border: 1px solid white;
+  height: 30px;
+}
+.active {
+  color: white !important;
+  text-decoration: underline;
+}
+</style>

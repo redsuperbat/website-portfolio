@@ -1,0 +1,31 @@
+@import './variables.scss';
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.center-children {
+  display: grid;
+  place-items: center;
+}
+
+* {
+  font-family: monospace, Roboto, 'Courier New', Courier, monospace;
+}

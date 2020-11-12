@@ -1,29 +1,48 @@
 <template>
-  <v-card
-    class="mx-auto"
-    :max-width="350"
-    max-height="350"
-    elevation="20"
-    :href="cardInfo.url"
-    target="_blank"
-  >
-    <v-img class="white--text align-end" height="180px" :src="cardInfo.img">
-      <v-card-title>{{ cardInfo.title }}</v-card-title>
-    </v-img>
-
-    <v-card-subtitle class="pb-0">{{ cardInfo.language }}</v-card-subtitle>
-
-    <v-card-text class="text--primary">
+  <Card @click="handleClick(cardInfo.url)" target="_blank" class="card">
+    <template v-slot:header>
+      <img :src="cardInfo.img" :alt="cardInfo.title" />
+    </template>
+    <template v-slot:title>
+      {{ cardInfo.title }}
+    </template>
+    <template v-slot:subtitle>
+      {{ cardInfo.language }}
+    </template>
+    <template v-slot:content>
       {{ cardInfo.description }}
-    </v-card-text>
-  </v-card>
+    </template>
+  </Card>
 </template>
 
-<script>
-export default {
-  name: "ProjectCard",
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { Card as ICard } from '@/types/uiLabels';
+import Card from 'primevue/card';
+export default defineComponent({
+  setup() {
+    const handleClick = (link: string) => {
+      window.open(link, '_blank');
+    };
+    return { handleClick };
+  },
+  components: {
+    Card,
+  },
   props: {
-    cardInfo: Object
-  }
-};
+    cardInfo: Object as () => ICard,
+  },
+});
 </script>
+
+<style lang="scss" scoped>
+.card {
+  border-radius: 5px;
+}
+img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 166px;
+  object-fit: cover;
+}
+</style>
