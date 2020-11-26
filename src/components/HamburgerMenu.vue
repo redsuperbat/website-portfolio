@@ -51,7 +51,7 @@ export default {
   transform-origin: 0 0;
   padding: 2px;
   width: 100%;
-  transition: 0.5s ease-in-out;
+  transition: 0.25s ease-in-out;
   background-color: white;
 }
 </style>

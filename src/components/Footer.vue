@@ -30,9 +30,12 @@
 </template>
 
 <script lang="ts">
-import { Button } from 'primevue/button';
+import Button from 'primevue/button';
 import { defineComponent } from 'vue';
 export default defineComponent({
+  components: {
+    Button,
+  },
   setup() {
     const details = [
       { icon: 'smartphone', content: '+4670-044 15 66' },

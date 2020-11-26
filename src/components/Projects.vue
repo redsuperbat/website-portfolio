@@ -15,6 +15,9 @@ import { useLang } from '@/hooks/useLang';
 import { computed, defineComponent } from 'vue';
 import ProjectCard from '@/components/ProjectCard.vue';
 export default defineComponent({
+  components: {
+    ProjectCard,
+  },
   setup() {
     const { uiLabels } = useLang();
     const projectPage = computed(() => uiLabels.value.projectPage);

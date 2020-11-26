@@ -20,17 +20,7 @@
   </nav>
 
   <!-- Mobile Mode -->
-  <MobileDropDown
-    class="hidden-md-and-up"
-    v-else
-    :open="drawer"
-    @openDrawer="openDrawer"
-    @scroll="scroll"
-    :header="header"
-    :lang="lang"
-    :textColor="textColor"
-    @switchLang="switchLang"
-  />
+  <MobileDropDown class="hidden-md-and-up" v-else :header="header" />
 </template>
 
 <script lang="ts">
@@ -66,7 +56,7 @@ export default defineComponent({
   },
   name: 'Toolbar',
   components: {
-    // MobileDropDown,
+    MobileDropDown,
     Button,
     LangButtons,
   },
