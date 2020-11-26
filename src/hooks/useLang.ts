@@ -1,6 +1,5 @@
 import { lang } from '@/store';
-import { UiLabels } from '@/types/uiLabels';
-import { computed, reactive } from 'vue';
+import { computed } from 'vue';
 import store from '@/store';
 
 export const useLang = () => {

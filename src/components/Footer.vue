@@ -15,6 +15,7 @@
       <Button
         v-for="(item, name) in links"
         :key="name"
+        @click="handleClick(item[0])"
         :href="item[0]"
         target="_blank"
         class="p-button-rounded p-button-text"
@@ -28,24 +29,36 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-export { default as Button } from 'primevue/button';
-export const details = [
-  { icon: 'smartphone', content: '+4670-044 15 66' },
-  { icon: 'email', content: 'max.netterberg@gmail.com' },
-];
-export const links = [
-  ['https://www.linkedin.com/in/max-netterberg/', 'fab fa-linkedin fa-2x'],
-  ['https://github.com/redsuperbat', 'fab fa-github-square fa-2x'],
-];
-export const handleIcons = (item: any) => {
-  if (item.icon === 'smartphone') {
-    window.open('tel:' + item.content);
-  } else {
-    window.location.href = 'mailto:' + item.content;
-  }
-};
-export default {};
+<script lang="ts">
+import { Button } from 'primevue/button';
+import { defineComponent } from 'vue';
+export default defineComponent({
+  setup() {
+    const details = [
+      { icon: 'smartphone', content: '+4670-044 15 66' },
+      { icon: 'email', content: 'max.netterberg@gmail.com' },
+    ];
+    const links = [
+      ['https://www.linkedin.com/in/max-netterberg/', 'fab fa-linkedin fa-2x'],
+      ['https://github.com/redsuperbat', 'fab fa-github-square fa-2x'],
+    ];
+    const handleIcons = (item: any) => {
+      if (item.icon === 'smartphone') {
+        window.open('tel:' + item.content);
+      } else {
+        window.location.href = 'mailto:' + item.content;
+      }
+    };
+    const handleClick = (link: string) => window.open(link, '_blank');
+
+    return {
+      details,
+      links,
+      handleIcons,
+      handleClick,
+    };
+  },
+});
 </script>
 
 <style scoped>

@@ -20,14 +20,17 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import { useLang } from '@/hooks/useLang';
 import { computed, defineComponent } from 'vue';
 
-const { uiLabels } = useLang();
-export const homePage = computed(() => uiLabels.value.homePage);
-
-export default {};
+export default defineComponent({
+  setup() {
+    const { uiLabels } = useLang();
+    const homePage = computed(() => uiLabels.value.homePage);
+    return { homePage };
+  },
+});
 </script>
 
 <style scoped>

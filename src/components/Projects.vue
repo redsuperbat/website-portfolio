@@ -10,14 +10,19 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { useLang } from '@/hooks/useLang';
 import { computed, defineComponent } from 'vue';
-export { default as ProjectCard } from '@/components/ProjectCard.vue';
-const { uiLabels } = useLang();
-export const projectPage = computed(() => uiLabels.value.projectPage);
-
-export default {};
+import ProjectCard from '@/components/ProjectCard.vue';
+export default defineComponent({
+  setup() {
+    const { uiLabels } = useLang();
+    const projectPage = computed(() => uiLabels.value.projectPage);
+    return {
+      projectPage,
+    };
+  },
+});
 </script>
 
 <style scoped>

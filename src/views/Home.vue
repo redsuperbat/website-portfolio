@@ -9,11 +9,21 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-export { default as Projects } from '@/components/Projects.vue';
-export { default as Start } from '@/components/Start.vue';
-export { default as About } from '@/components/About.vue';
-export { default as Footer } from '@/components/Footer.vue';
+<script lang="ts">
+import Projects from '@/components/Projects.vue';
+import About from '@/components/About.vue';
+import Start from '@/components/Start.vue';
+import Footer from '@/components/Footer.vue';
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  components: {
+    Projects,
+    About,
+    Start,
+    Footer,
+  },
+});
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav v-if="!xs">
     <!-- Desktop Mode -->
 
     <h4>Max <span>Netterberg</span></h4>
@@ -13,22 +13,24 @@
       >
         {{ item }}
       </Button>
+      <div>{{ lg }}</div>
     </div>
 
     <LangButtons />
-
-    <!-- Mobile Mode -->
-    <!-- <MobileDropDown
-      class="hidden-md-and-up"
-      :open="drawer"
-      @openDrawer="openDrawer"
-      @scroll="scroll"
-      :header="header"
-      :lang="lang"
-      :textColor="textColor"
-      @switchLang="switchLang"
-    /> -->
   </nav>
+
+  <!-- Mobile Mode -->
+  <MobileDropDown
+    class="hidden-md-and-up"
+    v-else
+    :open="drawer"
+    @openDrawer="openDrawer"
+    @scroll="scroll"
+    :header="header"
+    :lang="lang"
+    :textColor="textColor"
+    @switchLang="switchLang"
+  />
 </template>
 
 <script lang="ts">
@@ -39,10 +41,12 @@ import { computed, defineComponent } from 'vue';
 import { useLang } from '@/hooks/useLang';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import { useDimensions } from '@/hooks/useDimensions';
 export default defineComponent({
   setup() {
     const { uiLabels } = useLang();
     const header = computed(() => uiLabels.value.header);
+    const { xs } = useDimensions();
 
     const router = useRouter();
     const route = (route: string) => {
@@ -57,6 +61,7 @@ export default defineComponent({
     return {
       header,
       route,
+      xs,
     };
   },
   name: 'Toolbar',
