@@ -1,25 +1,26 @@
 <template>
   <div class="drawer">
     <div class="icon-wrapper">
-      <HamburgerMenu @openDrawer="openDrawer" :open="showbuttons" />
+      <HamburgerMenu @click="openDrawer" :open="showbuttons" />
       <LangButtons
         :lang="lang"
         :textColor="textColor"
         @switchLang="switchLang"
       />
     </div>
-
-    <div class="button-wrapper" v-if="showbuttons">
-      <Button
-        class="p-button-text center-children"
-        v-for="(item, name) in header"
-        :key="item"
-        height="70"
-        @click="route(name)"
-      >
-        <h1 class="title white--text">{{ item }}</h1>
-      </Button>
-    </div>
+    <ExpandTransition maxHeight="400px">
+      <div class="button-wrapper" v-if="showbuttons">
+        <Button
+          class="p-button-text center-children"
+          v-for="(item, name) in header"
+          :key="item"
+          height="70"
+          @click="route(name)"
+        >
+          <h1 class="title white--text">{{ item }}</h1>
+        </Button>
+      </div>
+    </ExpandTransition>
   </div>
 </template>
 
@@ -28,6 +29,7 @@ import { defineComponent } from 'vue';
 import HamburgerMenu from './HamburgerMenu.vue';
 import LangButtons from './LangButtons.vue';
 import Button from 'primevue/button';
+import ExpandTransition from '@/components/ExpandTransition.vue';
 export default defineComponent({
   name: 'MobileDropDown',
   data: () => ({
@@ -43,6 +45,7 @@ export default defineComponent({
     HamburgerMenu,
     LangButtons,
     Button,
+    ExpandTransition,
   },
   methods: {
     switchLang(lang: string) {

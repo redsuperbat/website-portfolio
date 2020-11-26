@@ -2,7 +2,7 @@
   <div id="main">
     <Toolbar />
     <router-view></router-view>
-    <FloatingActionButton />
+    <FloatingActionButton @click="scrollToTop" />
   </div>
 </template>
 
@@ -25,44 +25,11 @@ export default defineComponent({
     topScroll: false,
     textColor: false,
   }),
-  // created () {
-  //   window.addEventListener('scroll', this.handleScroll)
-  // },
-  // destroyed () {
-  //   window.removeEventListener('scroll', this.handleScroll)
-  // },
-  // methods: {
-  //   handleScroll: function () {
-  //     if (window.scrollY >= this.aboutOffset - 80) {
-  //       this.textColor = true
-  //     } else {
-  //       this.textColor = false
-  //     }
-  //     if (window.scrollY >= this.portfolioOffset * 0.4) {
-  //       this.topScroll = true
-  //     } else {
-  //       this.topScroll = false
-  //     }
-  //   },
-  //   setAboutOffset: function (offset) {
-  //     this.aboutOffset = offset
-  //   },
-  //   setPortfolioOffset: function (offset) {
-  //     this.portfolioOffset = offset
-  //   },
-  //   scroll: function (name) {
-  //     switch (name) {
-  //       case 'home':
-  //         goTo(0)
-  //         break
-  //       case 'portfolio':
-  //         goTo(this.portfolioOffset)
-  //         break
-  //       case 'about':
-  //         goTo(this.aboutOffset)
-  //     }
-  //   }
-  // }
+  setup() {
+    const scrollToTop = () =>
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    return { scrollToTop };
+  },
 });
 </script>
 
