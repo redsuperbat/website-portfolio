@@ -13,7 +13,6 @@
       >
         {{ item }}
       </Button>
-      <div>{{ lg }}</div>
     </div>
 
     <LangButtons />
@@ -40,11 +39,8 @@ export default defineComponent({
 
     const router = useRouter();
     const route = (route: string) => {
-      console.log(route);
-
       if (route === 'contact' || route === 'home') {
         router.push('/' + route);
-        return;
       }
     };
 

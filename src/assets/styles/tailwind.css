@@ -1,0 +1,18 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  @font-face {
+    font-family: Scope one;
+    src: url('https://fonts.googleapis.com/css2?family=Scope+One&display=swap');
+  }
+  @font-face {
+    font-family: Bai Jamjuree;
+    src: url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Scope+One&display=swap');
+  }
+}
+
+.grid-temp-col-350 {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}

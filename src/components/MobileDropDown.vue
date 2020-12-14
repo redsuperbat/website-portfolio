@@ -8,19 +8,17 @@
         @switchLang="switchLang"
       />
     </div>
-    <ExpandTransition maxHeight="400px">
-      <div class="button-wrapper" v-if="showbuttons">
-        <Button
-          class="p-button-text center-children"
-          v-for="(item, name) in header"
-          :key="item"
-          height="70"
-          @click="route(name)"
-        >
-          <h1 class="title white--text">{{ item }}</h1>
-        </Button>
-      </div>
-    </ExpandTransition>
+    <div v-expand:y class="flex flex-col" v-if="showbuttons">
+      <Button
+        class="p-button-text grid place-items-center"
+        v-for="(item, name) in header"
+        :key="item"
+        height="70"
+        @click="route(name)"
+      >
+        <h1 class="title white--text">{{ item }}</h1>
+      </Button>
+    </div>
   </div>
 </template>
 
@@ -29,7 +27,6 @@ import { defineComponent } from 'vue';
 import HamburgerMenu from './HamburgerMenu.vue';
 import LangButtons from './LangButtons.vue';
 import Button from 'primevue/button';
-import ExpandTransition from '@/components/ExpandTransition.vue';
 export default defineComponent({
   name: 'MobileDropDown',
   data: () => ({
@@ -45,7 +42,6 @@ export default defineComponent({
     HamburgerMenu,
     LangButtons,
     Button,
-    ExpandTransition,
   },
   methods: {
     switchLang(lang: string) {

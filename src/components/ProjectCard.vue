@@ -1,7 +1,7 @@
 <template>
-  <Card @click="handleClick(cardInfo.url)" target="_blank" class="card">
+  <Card @click="handleClick(cardInfo.url)" target="_blank" class="rounded">
     <template v-slot:header>
-      <img :src="cardInfo.img" :alt="cardInfo.title" />
+      <img :src="cardInfo.img" :alt="cardInfo.title" class="rounded-t" />
     </template>
     <template v-slot:title>
       {{ cardInfo.title }}
@@ -34,15 +34,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-.card {
-  border-radius: 5px;
-}
-img {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  height: 166px;
-  object-fit: cover;
-}
-</style>

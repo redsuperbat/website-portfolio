@@ -1,8 +1,8 @@
 <template>
-  <h1 style="margin-top:45px">{{ projectPage.title }}</h1>
-  <div class="card-wrapper">
+  <h1 class="text-4xl py-5 text-center text-white">{{ projectPage.title }}</h1>
+  <div class="grid-temp-col-350 grid gap-5 px-2 sm:px-5">
     <ProjectCard
-      class="ProjectCard"
+      class="ransition transform hover:scale-105 duration-300 cursor-pointer"
       v-for="(card, name) in projectPage.cards"
       :key="name"
       :cardInfo="card"
@@ -21,31 +21,10 @@ export default defineComponent({
   setup() {
     const { uiLabels } = useLang();
     const projectPage = computed(() => uiLabels.value.projectPage);
+
     return {
       projectPage,
     };
   },
 });
 </script>
-
-<style scoped>
-.card-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-}
-
-h1 {
-  text-align: center;
-  color: white;
-}
-
-.ProjectCard {
-  margin: 25px;
-  transition: transform 0.5s;
-}
-
-.ProjectCard:hover {
-  transform: scale(1.06);
-  cursor: pointer;
-}
-</style>

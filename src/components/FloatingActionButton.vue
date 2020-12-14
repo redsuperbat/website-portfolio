@@ -1,8 +1,7 @@
 <template>
   <Button
-    id="main"
     :icon="`pi ${icon}`"
-    class="p-button-rounded"
+    class="p-button-rounded fixed bottom-5 right-5"
     :style="{ height: `${size}px`, width: `${size}px` }"
     @click="$emit('click')"
   >
@@ -29,12 +28,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-#main {
-  position: fixed;
-  bottom: 5%;
-  right: 5%;
-  background: $primary-color !important;
-}
-</style>

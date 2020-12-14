@@ -1,11 +1,11 @@
 <template>
-  <div id="home">
+  <div>
     <Start />
     <Projects />
     <div class="slanted-container-left"></div>
     <About />
     <div class="slanted-container-right"></div>
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 
@@ -17,11 +17,14 @@ import Footer from '@/components/Footer.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+  setup() {
+    //
+  },
   components: {
     Projects,
     About,
     Start,
-    Footer,
+    // Footer,
   },
 });
 </script>
