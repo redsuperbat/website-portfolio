@@ -38,6 +38,13 @@
     "title": "Portfolio",
     "cards": [
       {
+        "title": "Node Torrent",
+        "description": "Torrent application intended to work in conjunction with plex. This app provides an interface to add and search for torrents. This project utilizes technologies such as Docker, Webtorrent, Vue & Parcel.",
+        "url": "https://github.com/redsuperbat/node-torrent",
+        "img": "https://i.imgur.com/wTrUPNU.jpg",
+        "language": "javascript, html, css"
+      },
+      {
         "title": "Wine Cellar",
         "description": "This is an mobile application that helps you keep track of the wines that you own. Written by me in Google's language dart, with the SDK Flutter",
         "url": "https://github.com/redsuperbat/wine_cellar",

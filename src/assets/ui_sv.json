@@ -38,6 +38,13 @@
     "title": "Portfolio",
     "cards": [
       {
+        "title": "Node Torrent",
+        "description": "Torrentapplikation avsedd att fungera tillsammans med plex. Den här appen ger ett gränssnitt för att lägga till och söka efter torrents. Detta projekt använder tekniker som Docker, Webtorrent, Vue & Parcel.",
+        "url": "https://github.com/redsuperbat/node-torrent",
+        "img": "https://i.imgur.com/wTrUPNU.jpg",
+        "language": "javascript, html, css"
+      },
+      {
         "title": "Vinkällaren",
         "description": "Detta är en mobilapplikation som hjälper dig att hålla reda på vinerna du äger. Skrivet av mig med Googles programspråk Dart, med ett ramverk som heter Flutter.",
         "url": "https://github.com/redsuperbat/wine_cellar",
@@ -81,7 +88,7 @@
       },
       {
         "title": "ush.se chrome tillägg",
-        "description": "Ett chrome tillägg som använder sig av url-förkortnings api:et. Projektet använder en bundler som hetere Parcel och kan generera en qr-kod för den förkortade webbadressen. Qr-kod och förkortad länk kan kopieras till urklipp.",
+        "description": "Ett chrome tillägg som använder sig av url-förkortnings api:et. Projektet använder en bundler som heter Parcel och kan generera en qr-kod för den förkortade webbadressen. Qr-kod och förkortad länk kan kopieras till urklipp.",
         "url": "https://github.com/redsuperbat/url-shortener-chrome-extension",
         "img": "https://i.imgur.com/jpPzdXy.jpg",
         "language": "javascript, Nodejs"
