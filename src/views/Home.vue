@@ -1,9 +1,8 @@
 <template>
   <div>
-    <Start />
-    <Projects />
-    <div class="slanted-container-left"></div>
     <About />
+    <div class="slanted-container-left"></div>
+    <Projects />
     <div class="slanted-container-right"></div>
     <Footer />
   </div>
@@ -12,7 +11,6 @@
 <script lang="ts" setup>
 import Projects from '@/components/Projects.vue';
 import About from '@/components/About.vue';
-import Start from '@/components/Start.vue';
 import Footer from '@/components/Footer.vue';
 </script>
 

@@ -10,9 +10,14 @@
         v-for="item in filteredRoutes"
         :key="item.name"
         class="p-button-text"
+        :class="{
+          underline: $route.name === item.name,
+        }"
         @click="$router.push(item)"
       >
-        {{ item.name }}
+        <span class="text-white">
+          {{ item.name }}
+        </span>
       </Button>
     </div>
 

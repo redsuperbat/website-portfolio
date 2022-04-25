@@ -6,3 +6,8 @@
 .grid-temp-col-350 {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
+
+@font-face {
+  font-family: 'Glacial';
+  src: local('Glacial'), url(../fonts/GlacialIndifference.woff) format('woff');
+}

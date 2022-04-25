@@ -1,10 +1,4 @@
 const sv = {
-  header: {
-    home: 'Hem',
-    portfolio: 'Portfolio',
-    about: 'Om mig',
-    contact: 'Kontakt',
-  },
   contactPage: {
     header:
       'Kontakta mig gärna för allt mellan himmel och jord. Jag tar gärna en kaffe och pratar om tech eller intressanta projektidéer',
@@ -20,7 +14,7 @@ const sv = {
     submit: 'Skicka',
   },
   aboutPage: {
-    title: 'Om mig',
+    title: 'Välkommen till min hörna av internet',
     paragraphs: [
       'Jag går femte året på min utbildning i Civilingenjörs-programmet i System Teknik och Samhälle (STS). STS-programmet kombinerar samhälle med ingenjörs-världen och ger breda perspektiv. STS innehåller många samhällskurser vilket gör att vi studenter lär oss titta kritiskt både på såväl kod som akademiska texter..',
       "Teknik, samhälle och gastronomi är mina tre största intressen. Det reflekteras i de projekt jag har gjort och jag tycker det är otroligt intressant hur man kan kombinera och uppnå synergieffekter med bra design av användargränssnitt, gastronomisk vetenskap och programmering. Projekt som 'Vinkällaren' är ett exempel på slutresultatet av just denna kombination av intressen.",
@@ -28,18 +22,8 @@ const sv = {
     ],
     resume: 'Ladda ner mitt CV',
   },
-  homePage: {
-    description: {
-      span1:
-        'Ingenjörsstudent inom sociotekniska system vid Uppsala universitet. Med en master som specialiserar sig på IT med stora intressen för ',
-      span2: 'AI ',
-      span3: 'och ',
-      span4: 'Webbutveckling.',
-    },
-    scroll: 'Scrolla ner...',
-  },
   projectPage: {
-    title: 'Portfolio',
+    title: 'Bitar av vad jag håller på med',
     cards: [
       {
         title: 'Vinkällaren',
@@ -102,12 +86,6 @@ const sv = {
 };
 
 const en = {
-  header: {
-    home: 'Home',
-    portfolio: 'Portfolio',
-    about: 'About',
-    contact: 'Contact',
-  },
   contactPage: {
     header:
       "Feel free to contact be about anything. I'm happy to just chat about tech or discuss new promising project ideas",
@@ -123,7 +101,7 @@ const en = {
     submit: 'Send',
   },
   aboutPage: {
-    title: 'About',
+    title: 'Welcome to my corner of the internet',
     paragraphs: [
       'I am currently studying the fifth year of the Engineer program in Sociotechnical Systems (STS). The STS program intertwines society and engineering and provides broad perspectives. STS takes a lot of social science courses within the program, which in turn makes us look critically at both code and academic texts.',
       "Technology, society and gastronomy are my three biggest interests. This reflects in the projects I have been working on. I am incredibly interested in how to combine good user experience design, gastronomic science and programming. Projects like 'Wine Cellar' is a good example of the end result because of this interest.",
@@ -131,18 +109,8 @@ const en = {
     ],
     resume: 'Download my resume',
   },
-  homePage: {
-    description: {
-      span1:
-        'Engineering student in sociotechnical systems at Uppsala University. The master specializes in IT and I have a big interest in ',
-      span2: 'AI ',
-      span3: 'and ',
-      span4: 'Web-development.',
-    },
-    scroll: 'Scroll down...',
-  },
   projectPage: {
-    title: 'Portfolio',
+    title: "Bits and pieces of what I'm up to",
     cards: [
       {
         title: 'Wine Cellar',
