@@ -1,20 +1,16 @@
 <template>
   <div class="drawer">
     <div class="icon-wrapper">
-      <HamburgerMenu @click="openDrawer" :open="showbuttons" />
-      <LangButtons
-        :lang="lang"
-        :textColor="textColor"
-        @switchLang="switchLang"
-      />
+      <HamburgerMenu @click="openDrawer" :open="showButtons" />
+      <LangButtons />
     </div>
-    <div v-expand:y class="flex flex-col" v-if="showbuttons">
+    <div v-expand:y class="flex flex-col" v-if="showButtons">
       <Button
         class="p-button-text grid place-items-center"
-        v-for="(item, name) in header"
-        :key="item"
+        v-for="item in routes"
+        :key="item.name"
         height="70"
-        @click="route(name)"
+        @click="$router.push(item)"
       >
         <h1 class="title white--text">{{ item }}</h1>
       </Button>
@@ -22,41 +18,19 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { ref } from 'vue';
 import HamburgerMenu from './HamburgerMenu.vue';
 import LangButtons from './LangButtons.vue';
 import Button from 'primevue/button';
-export default defineComponent({
-  name: 'MobileDropDown',
-  data: () => ({
-    showbuttons: false,
-  }),
-  props: {
-    header: Object,
-    open: Boolean,
-    lang: String,
-    textColor: Boolean,
-  },
-  components: {
-    HamburgerMenu,
-    LangButtons,
-    Button,
-  },
-  methods: {
-    switchLang(lang: string) {
-      this.$emit('switchLang', lang);
-    },
-    openDrawer() {
-      this.$emit('openDrawer');
-      setTimeout(() => (this.showbuttons = !this.showbuttons), 100);
-    },
-    route(name: string) {
-      this.$emit('scroll', name);
-      this.openDrawer();
-    },
-  },
-});
+import { routes } from '@/router';
+
+const showButtons = ref(false);
+const emit = defineEmits(['open']);
+function openDrawer() {
+  emit('open');
+  setTimeout(() => (showButtons.value = showButtons.value), 100);
+}
 </script>
 
 <style scoped>

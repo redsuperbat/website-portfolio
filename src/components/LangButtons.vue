@@ -2,8 +2,9 @@
   <div id="main" class="flex justify-center align-center">
     <Button
       class="p-button-text"
-      @click="setLang('en')"
-      :disabled="!isSv"
+      v-if="$root"
+      @click="setLang('sv')"
+      :disabled="$i18n.locale === 'sv'"
       :class="{ active: !isSv }"
     >
       EN
@@ -11,8 +12,8 @@
     <span />
     <Button
       class="p-button-text"
-      @click="setLang('sv')"
-      :disabled="isSv"
+      @click="setLang('en')"
+      :disabled="$i18n.locale === 'en'"
       :class="{ active: isSv }"
     >
       SV
@@ -20,39 +21,28 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from 'vue';
-import { useLang } from '@/hooks/useLang';
+<script lang="ts" setup>
 import Button from 'primevue/button';
-import { useStore } from 'vuex';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-export default defineComponent({
-  setup() {
-    const store = useStore();
-    const { setLang, currentLang } = useLang();
-
-    const isSv = computed(() => currentLang.value === 'sv');
-
-    return {
-      setLang,
-      currentLang,
-      isSv,
-    };
-  },
-  components: {
-    Button,
-  },
-});
+const i18n = useI18n();
+const isSv = computed(() => i18n.locale.value === 'sv');
+function setLang(lang: string) {
+  i18n.locale.value = lang;
+}
 </script>
 
 <style lang="scss" scoped>
 #main {
   width: 120px;
 }
+
 span {
   border: 1px solid white;
   height: 30px;
 }
+
 .active {
   color: white !important;
   text-decoration: underline;

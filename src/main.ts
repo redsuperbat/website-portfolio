@@ -1,15 +1,17 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store';
-import 'primevue/resources/themes/vela-purple/theme.css';
-import 'primevue/resources/primevue.min.css';
-import 'primeicons/primeicons.css';
 import '@/assets/styles/tailwind.css';
-import vExpand from './directives/v-expand';
+import { createPinia } from 'pinia';
+import 'primeicons/primeicons.css';
+import 'primevue/resources/primevue.min.css';
+import 'primevue/resources/themes/vela-purple/theme.css';
+import { createApp } from 'vue';
+import { createI18n } from 'vue-i18n';
+import App from './App.vue';
+import { router } from './router';
 
-createApp(App)
-  .use(store)
-  .directive('expand', vExpand)
-  .use(router)
-  .mount('#app');
+const i18n = createI18n({
+  locale: 'sv',
+  fallbackLocale: 'en',
+});
+const pinia = createPinia();
+
+createApp(App).use(i18n).use(pinia).use(router).mount('#app');

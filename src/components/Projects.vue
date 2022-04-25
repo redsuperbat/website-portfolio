@@ -1,30 +1,19 @@
 <template>
-  <h1 class="text-4xl py-5 text-center text-white">{{ projectPage.title }}</h1>
+  <h1 class="text-4xl py-5 text-center text-white">
+    {{ store.content.projectPage.title }}
+  </h1>
   <div class="grid-temp-col-350 grid gap-5 px-2 sm:px-5">
     <ProjectCard
-      class="ransition transform hover:scale-105 duration-300 cursor-pointer"
-      v-for="(card, name) in projectPage.cards"
-      :key="name"
+      class="transition transform hover:scale-105 duration-300 cursor-pointer"
+      v-for="card in store.content.projectPage.cards"
+      :key="card.title"
       :cardInfo="card"
     />
   </div>
 </template>
 
-<script lang="ts">
-import { useLang } from '@/hooks/useLang';
-import { computed, defineComponent } from 'vue';
+<script lang="ts" setup>
 import ProjectCard from '@/components/ProjectCard.vue';
-export default defineComponent({
-  components: {
-    ProjectCard,
-  },
-  setup() {
-    const { uiLabels } = useLang();
-    const projectPage = computed(() => uiLabels.value.projectPage);
-
-    return {
-      projectPage,
-    };
-  },
-});
+import { useAppStore } from '@/store/app-store';
+const store = useAppStore();
 </script>

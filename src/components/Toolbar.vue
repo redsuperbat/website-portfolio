@@ -1,17 +1,17 @@
 <template>
-  <nav v-if="!xs">
+  <nav class="md:hidden">
     <!-- Desktop Mode -->
 
     <h4>Max <span>Netterberg</span></h4>
 
     <div class="flex align-center">
       <Button
-        v-for="(item, key) in header"
-        :key="item"
+        v-for="item in routes"
+        :key="item.name"
         class="p-button-text"
-        @click="route(key)"
+        @click="$router.push(item)"
       >
-        {{ item }}
+        {{ item.name }}
       </Button>
     </div>
 
@@ -19,44 +19,14 @@
   </nav>
 
   <!-- Mobile Mode -->
-  <MobileDropDown class="hidden-md-and-up" v-else :header="header" />
+  <MobileDropDown class="sm:hidden" />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import MobileDropDown from './MobileDropDown.vue';
 import LangButtons from './LangButtons.vue';
 import Button from 'primevue/button';
-import { computed, defineComponent } from 'vue';
-import { useLang } from '@/hooks/useLang';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
-import { useDimensions } from '@/hooks/useDimensions';
-export default defineComponent({
-  setup() {
-    const { uiLabels } = useLang();
-    const header = computed(() => uiLabels.value.header);
-    const { xs } = useDimensions();
-
-    const router = useRouter();
-    const route = (route: string) => {
-      if (route === 'contact' || route === 'home') {
-        router.push('/' + route);
-      }
-    };
-
-    return {
-      header,
-      route,
-      xs,
-    };
-  },
-  name: 'Toolbar',
-  components: {
-    MobileDropDown,
-    Button,
-    LangButtons,
-  },
-});
+import { routes } from '@/router';
 </script>
 
 <style lang="scss" scoped>

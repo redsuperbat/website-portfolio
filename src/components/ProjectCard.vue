@@ -15,22 +15,13 @@
   </Card>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
 import { Card as ICard } from '@/types/uiLabels';
 import Card from 'primevue/card';
-export default defineComponent({
-  setup() {
-    const handleClick = (link: string) => {
-      window.open(link, '_blank');
-    };
-    return { handleClick };
-  },
-  components: {
-    Card,
-  },
-  props: {
-    cardInfo: Object as () => ICard,
-  },
-});
+const handleClick = (link: string) => {
+  window.open(link, '_blank');
+};
+defineProps<{
+  cardInfo: ICard;
+}>();
 </script>

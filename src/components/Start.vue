@@ -4,11 +4,11 @@
       <h1 class="text-5xl">Max Netterberg</h1>
       <div class="text-center px-2 mt-5">
         <span>{{ homePage.description.span1 }}</span>
-        <span style="color:orange; font-weight:bold"
+        <span style="color: orange; font-weight: bold"
           >{{ homePage.description.span2 }}
         </span>
         <span>{{ homePage.description.span3 }}</span>
-        <span style="color:aquamarine; font-weight:bold">
+        <span style="color: aquamarine; font-weight: bold">
           {{ homePage.description.span4 }}
         </span>
       </div>
@@ -21,16 +21,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { useLang } from '@/hooks/useLang';
-import { computed, defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { useAppStore } from '@/store/app-store';
+import { computed, ref } from 'vue';
 
-export default defineComponent({
-  setup() {
-    const { uiLabels } = useLang();
-    const homePage = computed(() => uiLabels.value.homePage);
-    const hover = ref(false);
-    return { homePage, hover };
-  },
-});
+const store = useAppStore();
+const homePage = computed(() => store.content.homePage);
+const hover = ref(false);
 </script>
