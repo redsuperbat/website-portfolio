@@ -4,10 +4,10 @@
       <HamburgerMenu @click="openDrawer" :open="showButtons" />
       <LangButtons />
     </div>
-    <div v-expand:y class="flex flex-col" v-if="showButtons">
+    <div class="flex flex-col" v-if="showButtons">
       <Button
         class="p-button-text grid place-items-center"
-        v-for="item in routes"
+        v-for="item in filteredRoutes"
         :key="item.name"
         height="70"
         @click="$router.push(item)"
@@ -24,7 +24,7 @@ import HamburgerMenu from './HamburgerMenu.vue';
 import LangButtons from './LangButtons.vue';
 import Button from 'primevue/button';
 import { routes } from '@/router';
-
+const filteredRoutes = routes.filter((route) => route.name);
 const showButtons = ref(false);
 const emit = defineEmits(['open']);
 function openDrawer() {

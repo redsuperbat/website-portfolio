@@ -5,28 +5,15 @@
     <div class="slanted-container-left"></div>
     <About />
     <div class="slanted-container-right"></div>
-    <!-- <Footer /> -->
+    <Footer />
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import Projects from '@/components/Projects.vue';
 import About from '@/components/About.vue';
 import Start from '@/components/Start.vue';
 import Footer from '@/components/Footer.vue';
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  setup() {
-    //
-  },
-  components: {
-    Projects,
-    About,
-    Start,
-    // Footer,
-  },
-});
 </script>
 
 <style scoped>

@@ -3,10 +3,6 @@ import Home from '../views/Home.vue';
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    redirect: '/home',
-  },
-  {
     path: '/home',
     name: 'home',
     component: Home,
@@ -15,6 +11,10 @@ export const routes: RouteRecordRaw[] = [
     path: '/contact',
     name: 'contact',
     component: () => import('../views/Contact.vue'),
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/home',
   },
 ];
 

@@ -1,12 +1,13 @@
 <template>
-  <nav class="md:hidden">
+  <nav class="invisible sm:visible z-10 bg-purple-500 bg-opacity-40">
     <!-- Desktop Mode -->
-
-    <h4>Max <span>Netterberg</span></h4>
+    <div class="grid items-center w-36">
+      <h4>Max <span>Netterberg</span></h4>
+    </div>
 
     <div class="flex align-center">
       <Button
-        v-for="item in routes"
+        v-for="item in filteredRoutes"
         :key="item.name"
         class="p-button-text"
         @click="$router.push(item)"
@@ -19,7 +20,7 @@
   </nav>
 
   <!-- Mobile Mode -->
-  <MobileDropDown class="sm:hidden" />
+  <MobileDropDown class="visible sm:invisible" />
 </template>
 
 <script lang="ts" setup>
@@ -27,6 +28,7 @@ import MobileDropDown from './MobileDropDown.vue';
 import LangButtons from './LangButtons.vue';
 import Button from 'primevue/button';
 import { routes } from '@/router';
+const filteredRoutes = routes.filter((route) => route.name);
 </script>
 
 <style lang="scss" scoped>

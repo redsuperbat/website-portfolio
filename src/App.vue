@@ -6,31 +6,12 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import Toolbar from '@/components/Toolbar.vue';
 import FloatingActionButton from '@/components/FloatingActionButton.vue';
-import { defineComponent } from 'vue';
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    Toolbar,
-    FloatingActionButton,
-  },
-  data: () => ({
-    theme: 'dark',
-    aboutOffset: 0,
-    portfolioOffset: 0,
-    currentPage: 'home',
-    topScroll: false,
-    textColor: false,
-  }),
-  setup() {
-    const scrollToTop = () =>
-      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
-    return { scrollToTop };
-  },
-});
+const scrollToTop = () =>
+  window.scroll({ top: 0, left: 0, behavior: 'smooth' });
 </script>
 
 <style scoped>

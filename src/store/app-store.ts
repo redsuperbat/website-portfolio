@@ -1,18 +1,21 @@
-import { Content, translatedContent, TranslatedContent } from '@/assets/i18n';
+import { translatedContent, TranslatedContent } from '@/assets/i18n';
 import { defineStore } from 'pinia';
 
 interface AppState {
-  content: Content;
+  allContent: TranslatedContent;
+  locale: 'sv' | 'en';
 }
 
 export const useAppStore = defineStore('app-store', {
-  state(): AppState {
-    return { content: translatedContent.sv };
-  },
+  state: () => ({ allContent: translatedContent, locale: 'sv' } as AppState),
   actions: {
-    switchLang(lang: keyof TranslatedContent) {
-      this.content = translatedContent[lang];
+    setLocale(locale: keyof TranslatedContent) {
+      this.locale = locale;
     },
   },
-  getters: {},
+  getters: {
+    content(state) {
+      return state.allContent[state.locale];
+    },
+  },
 });
