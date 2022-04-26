@@ -6,7 +6,7 @@
       :text="message.text"
       class="mb-1"
     ></Message>
-    <LoadingWorm class="ml-auto mt-3" :loading="isTyping"></LoadingWorm>
+    <LoadingWorm v-if="isTyping" class="ml-auto mt-3"></LoadingWorm>
   </div>
 </template>
 
