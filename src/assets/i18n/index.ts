@@ -83,6 +83,9 @@ const sv = {
       },
     ],
   },
+  createChatPage: {
+    startChatBtn: 'Starta en chatt med mig!',
+  },
 };
 
 const en = {
@@ -169,6 +172,9 @@ const en = {
         language: 'javascript, Nodejs',
       },
     ],
+  },
+  createChatPage: {
+    startChatBtn: 'Start a chat with me!',
   },
 };
 

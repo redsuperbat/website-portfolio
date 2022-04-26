@@ -7,14 +7,17 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@vueuse/core": "^8.3.1",
     "motion": "^10.7.2",
     "pinia": "^2.0.13",
     "primeicons": "^5.0.0",
     "primevue": "^3.12.5",
+    "tailwindcss-animation-delay": "^1.0.7",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
+    "@types/node": "^17.0.27",
     "@vitejs/plugin-vue": "^2.3.1",
     "autoprefixer": "^10.4.5",
     "postcss": "^8.4.12",
