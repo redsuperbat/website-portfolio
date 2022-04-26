@@ -1,7 +1,7 @@
 <template>
-  <Card @click="handleClick(cardInfo.url)" target="_blank" class="rounded">
+  <Card @click="handleClick(cardInfo.url)" target="_blank" class="rounded-xl">
     <template v-slot:header>
-      <img :src="cardInfo.img" :alt="cardInfo.title" class="rounded-t" />
+      <img :src="cardInfo.img" :alt="cardInfo.title" class="rounded-t-sm" />
     </template>
     <template v-slot:title>
       {{ cardInfo.title }}
