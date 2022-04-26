@@ -16,7 +16,7 @@
         @click="$router.push(item)"
       >
         <span class="text-white">
-          {{ item.name }}
+          {{ item.meta?.title }}
         </span>
       </Button>
     </div>
@@ -25,7 +25,7 @@
   </nav>
 
   <!-- Mobile Mode -->
-  <MobileDropDown class="visible sm:invisible" />
+  <MobileDropDown :routes="filteredRoutes" class="visible sm:invisible" />
 </template>
 
 <script lang="ts" setup>
@@ -33,7 +33,7 @@ import MobileDropDown from './MobileDropDown.vue';
 import LangButtons from './LangButtons.vue';
 import Button from 'primevue/button';
 import { routes } from '@/router';
-const filteredRoutes = routes.filter((route) => route.name);
+const filteredRoutes = routes.filter((route) => route.meta?.public);
 </script>
 
 <style lang="scss" scoped>

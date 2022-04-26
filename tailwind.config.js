@@ -13,6 +13,9 @@ module.exports = {
         primary: '#9c27b0',
         accent: '#fff',
       },
+      transitionProperty: {
+        'height': 'height'
+      }
     },
   },
   variants: {

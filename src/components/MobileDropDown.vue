@@ -1,18 +1,23 @@
 <template>
-  <div class="drawer">
-    <div class="icon-wrapper">
+  <div class="flex flex-col justify-evenly w-full fixed z-10 drawer">
+    <div class="flex justify-between p-2">
       <HamburgerMenu @click="openDrawer" :open="showButtons" />
       <LangButtons />
     </div>
-    <div class="flex flex-col" v-if="showButtons">
+    <div
+      class="flex flex-col items-center transition-height"
+      v-show="showButtons"
+    >
       <Button
-        class="p-button-text grid place-items-center"
-        v-for="item in filteredRoutes"
+        class="p-button-text w-full flex justify-center"
+        v-for="item in routes"
         :key="item.name"
         height="70"
         @click="$router.push(item)"
       >
-        <h1 class="title white--text">{{ item }}</h1>
+        <h1 class="text-white">
+          {{ item.meta?.title }}
+        </h1>
       </Button>
     </div>
   </div>
@@ -23,37 +28,22 @@ import { ref } from 'vue';
 import HamburgerMenu from './HamburgerMenu.vue';
 import LangButtons from './LangButtons.vue';
 import Button from 'primevue/button';
-import { routes } from '@/router';
-const filteredRoutes = routes.filter((route) => route.name);
+import { RouteRecordRaw } from 'vue-router';
+
 const showButtons = ref(false);
 const emit = defineEmits(['open']);
+defineProps<{
+  routes: RouteRecordRaw[];
+}>();
 function openDrawer() {
   emit('open');
-  setTimeout(() => (showButtons.value = showButtons.value), 100);
+
+  showButtons.value = !showButtons.value;
 }
 </script>
 
 <style scoped>
-.button-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
 .drawer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  width: 100%;
-  position: fixed;
-  z-index: 3;
   background-color: rgb(106, 13, 173, 0.7);
-}
-
-.icon-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  padding: 0 0 0 15px;
 }
 </style>
