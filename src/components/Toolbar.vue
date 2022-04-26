@@ -1,133 +1,63 @@
 <template>
-  <nav>
+  <nav class="invisible sm:visible z-10 bg-purple-500 bg-opacity-40">
     <!-- Desktop Mode -->
-    <v-app-bar
-      fixed
-      flat
-      class="hidden-sm-and-down app-bar"
-      color="transparent"
-    >
-      <v-toolbar-title style="cursor:pointer" class="clickable">
-        <div @click="setPage('home')">
-          <span
-            style="font-weight:lighter"
-            :class="{ 'white-background': textColor }"
-            >Max</span
-          >
-          <span :class="{ 'white-background': textColor }">Netterberg</span>
-        </div>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-row v-if="currentPage != 'contact'" justify="space-around">
-        <v-btn
-          v-for="(item, name) in header"
-          :key="name"
-          @click="scroll(name)"
-          depressed
-          color="transparent"
-          class="clickable"
-        >
-          <span v-if="name === currentPage">|</span>
-          <h4>{{ item }}</h4>
-        </v-btn>
-      </v-row>
-      <v-spacer></v-spacer>
-      <LangButtons
-        :lang="lang"
-        :textColor="textColor"
-        @switchLang="switchLang"
-      />
-    </v-app-bar>
+    <div class="grid items-center w-36">
+      <h4>Max <span>Netterberg</span></h4>
+    </div>
 
-    <!-- Mobile Mode -->
-    <MobileDropDown
-      class="hidden-md-and-up"
-      :open="drawer"
-      @openDrawer="openDrawer"
-      @scroll="scroll"
-      :header="header"
-      :lang="lang"
-      :textColor="textColor"
-      @switchLang="switchLang"
-    />
+    <div class="flex align-center">
+      <Button
+        v-for="item in filteredRoutes"
+        :key="item.name"
+        class="p-button-text"
+        :class="{
+          underline: $route.name === item.name,
+        }"
+        @click="$router.push(item)"
+      >
+        <span class="text-white">
+          {{ item.meta?.title }}
+        </span>
+      </Button>
+    </div>
+
+    <LangButtons />
   </nav>
+
+  <!-- Mobile Mode -->
+  <MobileDropDown :routes="filteredRoutes" class="visible sm:invisible" />
 </template>
 
-<script>
-import MobileDropDown from "./MobileDropDown";
-import LangButtons from "./LangButtons";
-export default {
-  name: "Toolbar",
-  props: {
-    header: Object,
-    currentPage: String,
-    lang: String,
-    topScroll: Boolean,
-    textColor: Boolean
-  },
-  components: {
-    MobileDropDown,
-    LangButtons
-  },
-  data: function() {
-    return {
-      drawer: false
-    };
-  },
-  methods: {
-    openDrawer: function() {
-      this.drawer = !this.drawer;
-    },
-
-    switchLang: function(lang) {
-      console.log("Trying to switch to ", lang);
-      this.$emit("switchLang", lang);
-    },
-    setPage: function(name) {
-      this.$emit("switchPage", name);
-    },
-    scroll: function(name) {
-      this.setPage(name);
-      this.$emit("scroll", name);
-    }
-  }
-};
+<script lang="ts" setup>
+import MobileDropDown from './MobileDropDown.vue';
+import LangButtons from './LangButtons.vue';
+import Button from 'primevue/button';
+import { routes } from '@/router';
+const filteredRoutes = routes.filter((route) => route.meta?.public);
 </script>
 
-<style>
+<style lang="scss" scoped>
+nav {
+  display: grid;
+  grid-template:
+    'icon navigation lang'
+    / auto 1fr auto;
+  position: fixed;
+  width: 100%;
+  padding: 0 15px;
+}
 h4 {
   color: white;
-  text-shadow: -1px -1px 0 #000;
+  font-weight: lighter;
+  span {
+    font-weight: bold;
+  }
 }
-
-span {
-  color: white;
+.flex.align-center {
+  justify-content: space-evenly;
 }
-
-.clickable:hover {
-  transform: scale(1.15);
-  text-decoration: none;
-}
-
-.selected {
-  font-weight: bold;
-  font-size: 120%;
-  color: white;
-}
-
-.hamburger-icon:hover {
-  transform: scale(1.15);
-}
-
-.hamburger-icon {
-  position: absolute;
-  z-index: 10;
-  right: 0;
-  margin-top: 25px;
-  margin-right: 40px;
-}
-
-.white-background {
-  color: black;
+img {
+  height: 40px;
+  width: auto;
 }
 </style>

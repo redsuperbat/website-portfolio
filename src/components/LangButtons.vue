@@ -1,37 +1,24 @@
 <template>
-  <div class="langbuttons">
-    <v-btn
-      @click="$emit('switchLang', 'en')"
-      text
-      class="clickable"
-      :disabled="checkLang('en')"
+  <div class="flex justify-center align-center">
+    <Button
+      @click="store.setLocale('en')"
+      :disabled="store.locale === 'en'"
+      :class="{ active: !(store.locale === 'en') }"
     >
-      <span :class="{ 'white-background': textColor }">EN</span>
-    </v-btn>
-    <span>|</span>
-    <v-btn
-      @click="$emit('switchLang', 'sv')"
-      text
-      class="clickable"
-      :disabled="checkLang('sv')"
+      EN
+    </Button>
+    <Button
+      @click="store.setLocale('sv')"
+      :disabled="store.locale === 'sv'"
+      :class="{ active: !(store.locale === 'sv') }"
     >
-      <span :class="{ 'white-background': textColor }">SV</span>
-    </v-btn>
+      SV
+    </Button>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    lang: String,
-    textColor: Boolean
-  },
-  methods: {
-    checkLang: function(l) {
-      return l === this.lang;
-    }
-  }
-};
+<script lang="ts" setup>
+import { useAppStore } from '@/store/app-store';
+import Button from 'primevue/button';
+const store = useAppStore();
 </script>
-
-<style></style>

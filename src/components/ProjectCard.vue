@@ -1,29 +1,27 @@
 <template>
-  <v-card
-    class="mx-auto"
-    :max-width="350"
-    max-height="350"
-    elevation="20"
-    :href="cardInfo.url"
-    target="_blank"
-  >
-    <v-img class="white--text align-end" height="180px" :src="cardInfo.img">
-      <v-card-title>{{ cardInfo.title }}</v-card-title>
-    </v-img>
-
-    <v-card-subtitle class="pb-0">{{ cardInfo.language }}</v-card-subtitle>
-
-    <v-card-text class="text--primary">
+  <Card @click="handleClick(cardInfo.url)" target="_blank" class="rounded-xl">
+    <template v-slot:header>
+      <img :src="cardInfo.img" :alt="cardInfo.title" class="rounded-t-sm" />
+    </template>
+    <template v-slot:title>
+      {{ cardInfo.title }}
+    </template>
+    <template v-slot:subtitle>
+      {{ cardInfo.language }}
+    </template>
+    <template v-slot:content>
       {{ cardInfo.description }}
-    </v-card-text>
-  </v-card>
+    </template>
+  </Card>
 </template>
 
-<script>
-export default {
-  name: "ProjectCard",
-  props: {
-    cardInfo: Object
-  }
+<script lang="ts" setup>
+import { Card as ICard } from '@/types/uiLabels';
+import Card from 'primevue/card';
+const handleClick = (link: string) => {
+  window.open(link, '_blank');
 };
+defineProps<{
+  cardInfo: ICard;
+}>();
 </script>

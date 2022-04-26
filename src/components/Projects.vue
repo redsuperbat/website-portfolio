@@ -1,53 +1,21 @@
 <template>
-  <div ref="main">
-    <h1 class="display-2" style="margin-top:45px">{{ projectPage.title }}</h1>
-    <v-container id="main">
+  <div class="px-2 sm:px-5 py-5 bg-white">
+    <h1 class="text-4xl py-5 text-primary">
+      {{ store.content.projectPage.title }}
+    </h1>
+    <div class="grid-temp-col-350 grid gap-5 bg-white">
       <ProjectCard
-        class="ProjectCard"
-        v-for="(card, name) in projectPage.cards"
-        :key="name"
+        class="transition transform hover:scale-105 duration-300 cursor-pointer"
+        v-for="card in store.content.projectPage.cards"
+        :key="card.title"
         :cardInfo="card"
       />
-    </v-container>
+    </div>
   </div>
 </template>
 
-<script>
-import ProjectCard from "@/components/ProjectCard";
-
-export default {
-  components: {
-    ProjectCard
-  },
-  mounted: function() {
-    var offset = this.$refs.main.offsetTop;
-    this.$emit("setPortfolioOffset", offset);
-  },
-  props: {
-    projectPage: Object
-  }
-};
+<script lang="ts" setup>
+import ProjectCard from '@/components/ProjectCard.vue';
+import { useAppStore } from '@/store/app-store';
+const store = useAppStore();
 </script>
-
-<style scoped>
-#main {
-  width: 100vw;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-h1 {
-  text-align: center;
-  color: white;
-}
-
-.ProjectCard {
-  margin: 25px;
-  transition: transform 0.5s;
-}
-
-.ProjectCard:hover {
-  transform: scale(1.06);
-  cursor: pointer;
-}
-</style>
