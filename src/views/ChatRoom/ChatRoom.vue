@@ -10,7 +10,7 @@
           <InputText
             v-model="message.text"
             type="text"
-            class="w-full"
+            class="w-full h-14 sm:h-10"
             @keypress.enter="sendMessage"
           />
         </span>
