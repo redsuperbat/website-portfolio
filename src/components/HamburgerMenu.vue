@@ -6,15 +6,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'HamburgerIcon',
-  props: {
-    open: Boolean,
-  },
-});
+<script lang="ts" setup>
+defineProps<{ open: boolean }>();
 </script>
 
 <style scoped>

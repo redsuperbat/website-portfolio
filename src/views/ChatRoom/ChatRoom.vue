@@ -23,14 +23,16 @@
 import { httpBaseUrl, wsBaseUrl } from '@/api/urls';
 import {
   useFetch,
+  UseFetchReturn,
   useWebSocket,
   watchDebounced,
   watchPausable,
 } from '@vueuse/core';
 import InputText from 'primevue/inputtext';
-import { reactive, ref, watch } from 'vue';
+import { reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import MessageList from './components/MessageList.vue';
+import { GetChatDto } from './types/get-chat.dto';
 import { Message } from './types/message';
 
 let senderId = localStorage.getItem('portfolio.senderId');
@@ -38,7 +40,6 @@ if (!senderId) {
   senderId = crypto.randomUUID();
   localStorage.setItem('portfolio.senderId', senderId);
 }
-console.log({ senderId });
 
 const isTyping = ref(false);
 
@@ -55,9 +56,22 @@ if (!chatId) {
   router.replace('/chat');
 }
 
-const { ws } = useWebSocket(`${wsBaseUrl}/chat-room/${chatId}`, {
-  autoReconnect: true,
-});
+useFetch<GetChatDto>(`${httpBaseUrl}/chats/${chatId}`)
+  .json()
+  .then((res: UseFetchReturn<GetChatDto>) => {
+    messages.value =
+      res.data.value?.messages.map((message) => ({
+        belongsTo: message.sender === senderId ? 'sender' : 'receiver',
+        text: message.content,
+      })) ?? [];
+  });
+
+const { ws } = useWebSocket(
+  `${wsBaseUrl}/chat-room/${chatId}?senderId=${senderId}`,
+  {
+    autoReconnect: true,
+  },
+);
 
 ws.value?.addEventListener('message', (message) => {
   const parsedData = JSON.parse(message.data) as {
@@ -71,14 +85,13 @@ ws.value?.addEventListener('message', (message) => {
       belongsTo: parsedData.sender === senderId ? 'sender' : 'receiver',
       text: parsedData.content,
     });
+    isTyping.value = false;
   }
 
   if (
     parsedData.eventType === 'ChatMessageStartedEvent' &&
     parsedData.sender !== senderId
   ) {
-    console.log({ sender: parsedData.sender, senderId });
-
     isTyping.value = true;
   }
 
@@ -89,8 +102,6 @@ ws.value?.addEventListener('message', (message) => {
     isTyping.value = false;
   }
 });
-
-watch(isTyping, (val) => console.log('Istyping', val));
 
 const { pause, resume } = watchPausable(message, async () => {
   await useFetch(`${httpBaseUrl}/start-typing`).post({
@@ -111,19 +122,21 @@ watchDebounced(
     });
     resume();
   },
-  { debounce: 4000 },
+  { debounce: 2000 },
 );
 
 async function sendMessage() {
   if (message.text) {
     const text = message.text;
     message.text = '';
-    useFetch(`${httpBaseUrl}/send-chat-message`)
+    await useFetch(`${httpBaseUrl}/send-chat-message`)
       .post({
         chatId,
         eventType: 'ChatMessageSentEvent',
         content: text,
         sender: senderId,
+        messageId: crypto.randomUUID(),
+        sentAt: new Date().toISOString(),
       })
       .json();
   }

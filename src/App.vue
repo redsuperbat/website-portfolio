@@ -2,11 +2,16 @@
   <div id="main">
     <Toolbar />
     <router-view></router-view>
+    <Toast
+      position="top-right"
+      :breakpoints="{ '500px': { width: '80vw', right: '5px', top: '5px' } }"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import Toolbar from '@/components/Toolbar.vue';
+import Toast from 'primevue/toast';
 </script>
 
 <style>

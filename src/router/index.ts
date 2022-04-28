@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from '../views/Home.vue';
+import Home from '../views/Home/Home.vue';
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -7,7 +7,7 @@ export const routes: RouteRecordRaw[] = [
     name: 'home',
     meta: {
       public: true,
-      title: 'Landing Page',
+      i18n: 'landingPage',
     },
     component: Home,
   },
@@ -16,7 +16,7 @@ export const routes: RouteRecordRaw[] = [
     name: 'chat',
     meta: {
       public: true,
-      title: 'Chat with me!',
+      i18n: 'createChatPage',
     },
     component: () => import('../views/CreateChat/CreateChat.vue'),
   },
@@ -30,7 +30,7 @@ export const routes: RouteRecordRaw[] = [
     name: 'blog',
     meta: {
       public: false,
-      title: 'My blogging space',
+      i18n: 'blogPage',
     },
     component: () => import('../views/Blog/Blog.vue'),
   },

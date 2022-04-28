@@ -86,6 +86,10 @@ const sv = {
   createChatPage: {
     startChatBtn: 'Starta en chatt med mig!',
   },
+  toolbar: {
+    landingPage: 'Smått och gott!',
+    createChatPage: 'Starta en chatt med mig!',
+  },
 };
 
 const en = {
@@ -175,6 +179,10 @@ const en = {
   },
   createChatPage: {
     startChatBtn: 'Start a chat with me!',
+  },
+  toolbar: {
+    landingPage: 'Landing page.',
+    createChatPage: 'Start a chat with me!',
   },
 };
 

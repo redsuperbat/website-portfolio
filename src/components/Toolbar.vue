@@ -16,7 +16,7 @@
         @click="$router.push(item)"
       >
         <span class="text-white">
-          {{ item.meta?.title }}
+          {{ getToolbarText(item.meta?.i18n) }}
         </span>
       </Button>
     </div>
@@ -33,7 +33,13 @@ import MobileDropDown from './MobileDropDown.vue';
 import LangButtons from './LangButtons.vue';
 import Button from 'primevue/button';
 import { routes } from '@/router';
+import { useAppStore } from '@/store/app-store';
+const store = useAppStore();
 const filteredRoutes = routes.filter((route) => route.meta?.public);
+function getToolbarText(key: unknown) {
+  if (typeof key !== 'string') return;
+  return store.content.toolbar[key];
+}
 </script>
 
 <style lang="scss" scoped>

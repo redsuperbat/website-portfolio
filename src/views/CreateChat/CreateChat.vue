@@ -30,9 +30,21 @@ import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { useAppStore } from '@/store/app-store';
 import { httpBaseUrl } from '@/api/urls';
+import { useToast } from 'primevue/usetoast';
 const router = useRouter();
-const loading = ref(false);
 const store = useAppStore();
+const toast = useToast();
+
+const loading = ref(false);
+
+if (!crypto?.randomUUID) {
+  toast.add({
+    severity: 'error',
+    summary: 'Your browser does not support chatting with me 😭',
+    life: 3000,
+  });
+  router.replace('/');
+}
 
 async function startChat() {
   loading.value = true;

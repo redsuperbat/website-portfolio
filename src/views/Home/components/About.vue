@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 import { useAppStore } from '@/store/app-store';
 import Button from 'primevue/button';
-import { computed, onMounted, reactive, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 const store = useAppStore();
 const paragraphs = computed(() => store.content.aboutPage.paragraphs);
 const resume = computed(() => store.content.aboutPage.resume);
@@ -39,8 +39,8 @@ const title = computed(() => store.content.aboutPage.title);
 const image = ref<HTMLImageElement>();
 const rocket = ref<HTMLSpanElement>();
 
-onMounted(() => {
-  const height = image.value?.getBoundingClientRect().width;
+watch(image, (image) => {
+  const height = image?.getBoundingClientRect().width;
   const width = height;
   if (!height) return;
   if (!width) return;
@@ -65,9 +65,9 @@ onMounted(() => {
       rocket.value.style.display = 'none';
     }
   };
-
   requestAnimationFrame(animateRocket);
 });
+
 const handleClick = () => {
   window.open(
     'https://drive.google.com/file/d/1HWIkQeoJBltslr3E5vWIDSHCf-g-s8Wb/view?usp=sharing',

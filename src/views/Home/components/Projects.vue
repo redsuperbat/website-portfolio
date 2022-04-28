@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import ProjectCard from '@/components/ProjectCard.vue';
+import ProjectCard from './ProjectCard.vue';
 import { useAppStore } from '@/store/app-store';
 const store = useAppStore();
 </script>

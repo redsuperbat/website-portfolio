@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts" setup>
-import Projects from '@/components/Projects.vue';
-import About from '@/components/About.vue';
-import Footer from '@/components/Footer.vue';
+import Projects from './components/Projects.vue';
+import About from './components/About.vue';
+import Footer from './components/Footer.vue';
 </script>
 
 <style scoped>
