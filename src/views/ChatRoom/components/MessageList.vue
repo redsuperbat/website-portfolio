@@ -5,8 +5,8 @@
       :belongs-to="message.belongsTo"
       :text="message.text"
       class="mb-1"
-    ></Message>
-    <LoadingWorm v-if="isTyping" class="ml-auto mt-3"></LoadingWorm>
+    />
+    <LoadingWorm v-if="isTyping" class="ml-auto mt-3" />
   </div>
 </template>
 

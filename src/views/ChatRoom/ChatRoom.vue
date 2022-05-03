@@ -29,7 +29,7 @@ import {
   watchPausable,
 } from '@vueuse/core';
 import InputText from 'primevue/inputtext';
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import MessageList from './components/MessageList.vue';
 import { GetChatDto } from './types/get-chat.dto';
@@ -66,20 +66,19 @@ useFetch<GetChatDto>(`${httpBaseUrl}/chats/${chatId}`)
       })) ?? [];
   });
 
-const { ws } = useWebSocket(
+const { data } = useWebSocket(
   `${wsBaseUrl}/chat-room/${chatId}?senderId=${senderId}`,
   {
     autoReconnect: true,
   },
 );
 
-ws.value?.addEventListener('message', (message) => {
-  const parsedData = JSON.parse(message.data) as {
+watch(data, (data) => {
+  const parsedData = JSON.parse(data) as {
     content: string;
     sender: string;
     eventType: string;
   };
-
   if (parsedData.eventType === 'ChatMessageSentEvent') {
     messages.value.push({
       belongsTo: parsedData.sender === senderId ? 'sender' : 'receiver',
