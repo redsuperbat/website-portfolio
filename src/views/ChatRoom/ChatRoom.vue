@@ -29,28 +29,38 @@ import {
   watchPausable,
 } from '@vueuse/core';
 import InputText from 'primevue/inputtext';
+import { useToast } from 'primevue/usetoast';
 import { reactive, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import MessageList from './components/MessageList.vue';
 import { GetChatDto } from './types/get-chat.dto';
 import { Message } from './types/message';
-
+const toast = useToast();
+const messages = ref<Message[]>([]);
+const route = useRoute();
+const router = useRouter();
+const chatId = route.params.id as string;
 let senderId = localStorage.getItem('portfolio.senderId');
+const isTyping = ref(false);
+
+if (!crypto?.randomUUID) {
+  toast.add({
+    severity: 'error',
+    summary: 'Your browser does not support chatting with me 😭',
+    life: 3000,
+  });
+  router.replace('/');
+}
+
 if (!senderId) {
   senderId = crypto.randomUUID();
   localStorage.setItem('portfolio.senderId', senderId);
 }
 
-const isTyping = ref(false);
-
 const message = reactive<Message>({
   text: '',
   belongsTo: 'sender',
 });
-const messages = ref<Message[]>([]);
-const route = useRoute();
-const router = useRouter();
-const chatId = route.params.id as string;
 
 if (!chatId) {
   router.replace('/chat');
