@@ -32,11 +32,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useAppStore } from '@/store/app-store';
 import Button from 'primevue/button';
 import { ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-const store = useAppStore();
 const { t } = useI18n();
 
 const image = ref<HTMLImageElement>();
