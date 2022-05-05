@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from '../views/Home/Home.vue';
+import ChatRoomPage from '../views/ChatRoom/ChatRoom.vue';
+import CreateChatPage from '../views/CreateChat/CreateChat.vue';
+import HomePage from '../views/Home/Home.vue';
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -9,7 +11,7 @@ export const routes: RouteRecordRaw[] = [
       public: true,
       i18n: 'landing-page',
     },
-    component: Home,
+    component: HomePage,
   },
   {
     path: '/chat',
@@ -18,12 +20,12 @@ export const routes: RouteRecordRaw[] = [
       public: true,
       i18n: 'create-chat-page',
     },
-    component: () => import('../views/CreateChat/CreateChat.vue'),
+    component: CreateChatPage,
   },
   {
     path: '/chat/:id',
     name: 'chat-room',
-    component: () => import('../views/ChatRoom/ChatRoom.vue'),
+    component: ChatRoomPage,
   },
   {
     path: '/blog',
