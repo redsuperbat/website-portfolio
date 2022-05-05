@@ -16,9 +16,13 @@
         />
       </div>
 
-      <Button @click="startChat" :loading="loading">
-        <h1>{{ store.content.createChatPage.startChatBtn }}</h1>
-      </Button>
+      <Button
+        @click="startChat"
+        :loading="loading"
+        icon="pi pi-comments"
+        iconPos="right"
+        :label="t('start-chat-btn')"
+      />
     </div>
   </div>
 </template>
@@ -28,19 +32,19 @@ import Button from 'primevue/button';
 import { useFetch } from '@vueuse/core';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
-import { useAppStore } from '@/store/app-store';
 import { httpBaseUrl } from '@/api/urls';
 import { useToast } from 'primevue/usetoast';
+import { useI18n } from 'vue-i18n';
 const router = useRouter();
-const store = useAppStore();
 const toast = useToast();
+const { t } = useI18n();
 
 const loading = ref(false);
 
 if (!crypto?.randomUUID) {
   toast.add({
     severity: 'error',
-    summary: 'Your browser does not support chatting with me 😭',
+    summary: t('chat-unsupported'),
     life: 3000,
   });
   router.replace('/');
@@ -54,7 +58,13 @@ async function startChat() {
       eventType: 'ChatStartedEvent',
     })
     .json();
-  if (res.statusCode.value && res.statusCode.value > 400) {
+  const statusCode = res.statusCode.value ?? Infinity;
+  if (statusCode >= 400) {
+    toast.add({
+      severity: 'error',
+      summary: t('cannot-create-chat'),
+      life: 3000,
+    });
     loading.value = false;
     return;
   }
@@ -64,3 +74,18 @@ async function startChat() {
   }
 }
 </script>
+
+<i18n lang="json">
+{
+  "en": {
+    "chat-unsupported": "Your browser does not support chatting with me 😭",
+    "start-chat-btn": "Start a chat with me!",
+    "cannot-create-chat": "Unable to start a chat, try again later 💬"
+  },
+  "sv": {
+    "chat-unsupported": "Din webbläsare har inte support för att chatta med mig 😭",
+    "start-chat-btn": "Starta en chatt med mig!",
+    "cannot-create-chat": "Kunde inte starta en chatt, testa igen senare 💬"
+  }
+}
+</i18n>

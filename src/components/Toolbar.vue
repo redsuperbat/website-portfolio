@@ -7,16 +7,16 @@
 
     <div class="flex align-center">
       <Button
-        v-for="item in filteredRoutes"
-        :key="item.name"
+        v-for="{ display, name } in filteredRoutes"
+        :key="name"
         class="p-button-text"
         :class="{
-          underline: $route.name === item.name,
+          underline: $route.name === name,
         }"
-        @click="$router.push(item)"
+        @click="route(name)"
       >
         <span class="text-white">
-          {{ getToolbarText(item.meta?.i18n) }}
+          {{ display }}
         </span>
       </Button>
     </div>
@@ -25,20 +25,33 @@
   </nav>
 
   <!-- Mobile Mode -->
-  <MobileDropDown :routes="filteredRoutes" class="visible sm:invisible" />
+  <MobileDropDown
+    @route="route"
+    :routes="filteredRoutes"
+    class="visible sm:invisible"
+  />
 </template>
 
 <script lang="ts" setup>
 import MobileDropDown from './MobileDropDown.vue';
 import LangButtons from './LangButtons.vue';
 import Button from 'primevue/button';
-import { routes } from '@/router';
-import { useAppStore } from '@/store/app-store';
-const store = useAppStore();
-const filteredRoutes = routes.filter((route) => route.meta?.public);
-function getToolbarText(key: unknown) {
-  if (typeof key !== 'string') return;
-  return store.content.toolbar[key];
+import { router, routes } from '@/router';
+import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
+const { t } = useI18n();
+
+const filteredRoutes = computed(() =>
+  routes
+    .filter((route) => route.meta?.public)
+    .map(({ name, meta }) => ({
+      display: t(meta?.i18n as string),
+      name: name?.toString() as string,
+    })),
+);
+
+function route(name: string) {
+  router.push({ name });
 }
 </script>
 
@@ -67,3 +80,18 @@ img {
   width: auto;
 }
 </style>
+
+<i18n lang="json">
+{
+  "en": {
+    "landing-page": "Landing Page",
+    "create-chat-page": "Start a chat with me!",
+    "blog-page": "Look at what I have to say..."
+  },
+  "sv": {
+    "landing-page": "Förstasidan",
+    "create-chat-page": "Starta en chatt med mig!",
+    "blog-page": "Kolla på vad jag har att säga"
+  }
+}
+</i18n>

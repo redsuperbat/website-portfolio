@@ -7,7 +7,7 @@ export const routes: RouteRecordRaw[] = [
     name: 'home',
     meta: {
       public: true,
-      i18n: 'landingPage',
+      i18n: 'landing-page',
     },
     component: Home,
   },
@@ -16,7 +16,7 @@ export const routes: RouteRecordRaw[] = [
     name: 'chat',
     meta: {
       public: true,
-      i18n: 'createChatPage',
+      i18n: 'create-chat-page',
     },
     component: () => import('../views/CreateChat/CreateChat.vue'),
   },
@@ -30,7 +30,7 @@ export const routes: RouteRecordRaw[] = [
     name: 'blog',
     meta: {
       public: false,
-      i18n: 'blogPage',
+      i18n: 'blog-page',
     },
     component: () => import('../views/Blog/Blog.vue'),
   },
@@ -40,7 +40,13 @@ export const routes: RouteRecordRaw[] = [
   },
 ];
 
-export const router = createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+router.beforeEach((to) => {
+  document.title = to.meta.i18n as string;
+});
+
+export { router };

@@ -8,13 +8,13 @@
       <div class="flex flex-col items-center h-24" v-show="showButtons">
         <Button
           class="p-button-text w-full flex justify-center"
-          v-for="item in routes"
-          :key="item.name"
+          v-for="{ display, name } in routes"
+          :key="name"
           height="70"
-          @click="route(item)"
+          @click="route(name)"
         >
           <h1 class="text-white">
-            {{ getToolbarText(item.meta?.i18n) }}
+            {{ display }}
           </h1>
         </Button>
       </div>
@@ -27,16 +27,12 @@ import { ref } from 'vue';
 import HamburgerMenu from './HamburgerMenu.vue';
 import LangButtons from './LangButtons.vue';
 import Button from 'primevue/button';
-import { RouteRecordRaw, useRouter } from 'vue-router';
-import { useAppStore } from '@/store/app-store';
-const router = useRouter();
-const store = useAppStore();
 
 const showButtons = ref(false);
 
-const emit = defineEmits(['open']);
+const emit = defineEmits(['open', 'route']);
 defineProps<{
-  routes: RouteRecordRaw[];
+  routes: { display: string; name: string }[];
 }>();
 
 function openDrawer() {
@@ -44,14 +40,9 @@ function openDrawer() {
   showButtons.value = !showButtons.value;
 }
 
-function getToolbarText(key: unknown) {
-  if (typeof key !== 'string') return;
-  return store.content.toolbar[key];
-}
-
-function route(route: RouteRecordRaw) {
+function route(name: string) {
+  emit('route', name);
   showButtons.value = false;
-  router.push(route);
 }
 </script>
 

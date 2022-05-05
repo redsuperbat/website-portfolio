@@ -15,12 +15,16 @@
       class="max-w-lg text-justify text-white flex flex-col items-center space-y-5"
     >
       <h1 class="text-center text-4xl">
-        {{ title }}
+        {{ t('title') }}
       </h1>
-      <p v-for="paragraph in paragraphs">{{ paragraph }}</p>
-      <Button @click="handleClick">
+
+      <p v-for="v in [1, 2, 3]">
+        {{ t('paragraph' + v) }}
+      </p>
+
+      <Button v-if="false" @click="handleClick">
         <span class="text-white">
-          {{ resume }}
+          {{ t('resume') }}
         </span>
       </Button>
     </div>
@@ -30,11 +34,10 @@
 <script lang="ts" setup>
 import { useAppStore } from '@/store/app-store';
 import Button from 'primevue/button';
-import { computed, onMounted, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 const store = useAppStore();
-const paragraphs = computed(() => store.content.aboutPage.paragraphs);
-const resume = computed(() => store.content.aboutPage.resume);
-const title = computed(() => store.content.aboutPage.title);
+const { t } = useI18n();
 
 const image = ref<HTMLImageElement>();
 const rocket = ref<HTMLSpanElement>();
@@ -75,3 +78,22 @@ const handleClick = () => {
   );
 };
 </script>
+
+<i18n lang="json">
+{
+  "en": {
+    "resume": "Download my CV",
+    "title": "Welcome to my corner of the internet!",
+    "paragraph1": "This webpage aims to be a living document of what is happening in my tech related life. Here you can find the most of the stuff I'm up to regarding tech. Including projects, news and thoughts.",
+    "paragraph2": "If you scroll down here there are projects you can look through from my previous endeavors. If any one of them tickles your fancy grab a ☕️ with me and tell me why.",
+    "paragraph3": "🌴 Organically grown 🌴"
+  },
+  "sv": {
+    "resume": "Ladda ner mitt CV",
+    "title": "Välkommen till min hörna av internet!",
+    "paragraph1": "Den här webbsidan syftar till att vara ett levande dokument om vad som händer i mitt tekniska liv. Här kan du hitta det mesta jag håller på med om teknik. Inklusive projekt, nyheter och tankar.",
+    "paragraph2": "Om du scrollar ner här finns projekt du kan titta igenom från mina tidigare äventyr. Om någon av dem får dig att tänka till en extra gång, ta gärna en ☕️ med mig och berätta varför.",
+    "paragraph3": "🌴 Ekologiskt odlad 🌴"
+  }
+}
+</i18n>

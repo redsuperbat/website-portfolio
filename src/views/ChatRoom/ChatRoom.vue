@@ -31,6 +31,7 @@ import {
 import InputText from 'primevue/inputtext';
 import { useToast } from 'primevue/usetoast';
 import { reactive, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 import MessageList from './components/MessageList.vue';
 import { GetChatDto } from './types/get-chat.dto';
@@ -42,11 +43,12 @@ const router = useRouter();
 const chatId = route.params.id as string;
 let senderId = localStorage.getItem('portfolio.senderId');
 const isTyping = ref(false);
+const { t } = useI18n();
 
 if (!crypto?.randomUUID) {
   toast.add({
     severity: 'error',
-    summary: 'Your browser does not support chatting with me 😭',
+    summary: t('toast'),
     life: 3000,
   });
   router.replace('/');
@@ -168,3 +170,14 @@ async function sendMessage() {
   grid-area: text-area;
 }
 </style>
+
+<i18n lang="json">
+{
+  "en": {
+    "toast": "Your browser does not support chatting with me 😭"
+  },
+  "sv": {
+    "toast": "Din webbläsare har inte support för att chatta med mig 😭"
+  }
+}
+</i18n>

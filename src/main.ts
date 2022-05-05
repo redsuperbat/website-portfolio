@@ -7,11 +7,13 @@ import 'primevue/resources/themes/vela-purple/theme.css';
 import ToastService from 'primevue/toastservice';
 import { createApp } from 'vue';
 import App from './App.vue';
+import { i18n } from './i18n/instance';
 import { router } from './router';
 
 const pinia = createPinia();
 const app = createApp(App);
 
+app.use(i18n);
 app.use(PrimeVue);
 app.use(ToastService);
 app.use(pinia);
