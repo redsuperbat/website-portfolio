@@ -15,18 +15,3 @@
 import Button from 'primevue/button';
 import { availableLocales } from '@/i18n/instance';
 </script>
-
-<i18n lang="json">
-{
-  "en": {
-    "landing-page": "Landing Page",
-    "create-chat-page": "Start a chat with me!",
-    "blog-page": "Look at what I have to say..."
-  },
-  "sv": {
-    "landing-page": "Förstasidan",
-    "create-chat-page": "Starta en chatt med mig!",
-    "blog-page": "Kolla på vad jag har att säga"
-  }
-}
-</i18n>

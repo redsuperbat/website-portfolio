@@ -1,17 +1,25 @@
 <template>
+  <div class="h-24"></div>
   <div class="grid place-items-center h-screen">
     <div class="max-w-lg w-full chat-grid h-full sm:h-[60vh] overflow-y-scroll">
       <div class="message-list">
-        <MessageList :messages="messages" :is-typing="isTyping"></MessageList>
+        <MessageList
+          :chatting-with="chattingWith"
+          :messages="messages"
+          :is-typing="isTyping"
+        ></MessageList>
       </div>
       <div class="sticky bottom-0 left-0">
         <span class="p-input-icon-right w-full">
-          <i class="pi pi-send cursor-pointer" @click="sendMessage" />
+          <i
+            class="pi pi-send cursor-pointer -translate-y-2 !text-3xl sm:-translate-y-1 sm:!text-xl"
+            @click="sendMessage"
+          />
           <InputText
             v-model="message.text"
+            @keypress.enter="sendMessage"
             type="text"
             class="w-full h-14 sm:h-10"
-            @keypress.enter="sendMessage"
           />
         </span>
       </div>
@@ -29,34 +37,24 @@ import {
   watchPausable,
 } from '@vueuse/core';
 import InputText from 'primevue/inputtext';
-import { useToast } from 'primevue/usetoast';
 import { reactive, ref, watch } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 import MessageList from './components/MessageList.vue';
 import { GetChatDto } from './types/get-chat.dto';
 import { Message } from './types/message';
-const toast = useToast();
-const messages = ref<Message[]>([]);
+
 const route = useRoute();
 const router = useRouter();
+
 const chatId = route.params.id as string;
 let senderId = localStorage.getItem('portfolio.senderId');
-const isTyping = ref(false);
-const { t } = useI18n();
 
-if (!crypto?.randomUUID) {
-  toast.add({
-    severity: 'error',
-    summary: t('toast'),
-    life: 3000,
-  });
-  router.replace('/');
-}
+const messages = ref<Message[]>([]);
+const isTyping = ref(false);
+const chattingWith = ref('');
 
 if (!senderId) {
-  senderId = crypto.randomUUID();
-  localStorage.setItem('portfolio.senderId', senderId);
+  router.replace('/chat');
 }
 
 const message = reactive<Message>({
@@ -71,11 +69,14 @@ if (!chatId) {
 useFetch<GetChatDto>(`${httpBaseUrl}/chats/${chatId}`)
   .json()
   .then((res: UseFetchReturn<GetChatDto>) => {
-    messages.value =
-      res.data.value?.messages.map((message) => ({
-        belongsTo: message.sender === senderId ? 'sender' : 'receiver',
-        text: message.content,
-      })) ?? [];
+    const data = res.data.value;
+    if (!data) return;
+    chattingWith.value =
+      data.senderId === senderId ? data.senderName : 'Max Netterberg';
+    messages.value = data.messages.map((message) => ({
+      belongsTo: message.senderId === senderId ? 'sender' : 'receiver',
+      text: message.content,
+    }));
   });
 
 const { data } = useWebSocket(
@@ -116,7 +117,7 @@ watch(data, (data) => {
 
 const { pause, resume } = watchPausable(message, async () => {
   await useFetch(`${httpBaseUrl}/start-typing`).post({
-    sender: senderId,
+    senderId,
     chatId,
     eventType: 'ChatMessageStartedEvent',
   });
@@ -127,7 +128,7 @@ watchDebounced(
   message,
   async () => {
     await useFetch(`${httpBaseUrl}/stop-typing`).post({
-      sender: senderId,
+      senderId,
       chatId,
       eventType: 'ChatMessageStoppedEvent',
     });
@@ -143,10 +144,8 @@ async function sendMessage() {
     await useFetch(`${httpBaseUrl}/send-chat-message`)
       .post({
         chatId,
-        eventType: 'ChatMessageSentEvent',
         content: text,
-        sender: senderId,
-        messageId: crypto.randomUUID(),
+        senderId,
         sentAt: new Date().toISOString(),
       })
       .json();

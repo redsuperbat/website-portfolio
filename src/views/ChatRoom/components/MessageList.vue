@@ -6,7 +6,10 @@
       :text="message.text"
       class="mb-1"
     />
-    <LoadingWorm v-if="isTyping" class="ml-auto mt-3" />
+    <div class="flex flex-col">
+      <small>{{ chattingWith }}</small>
+      <LoadingWorm v-if="isTyping" class="mt-3" />
+    </div>
   </div>
 </template>
 
@@ -16,6 +19,7 @@ import Message from './Message.vue';
 import LoadingWorm from './LoadingWorm.vue';
 
 defineProps<{
+  chattingWith: string;
   messages: IMessage[];
   isTyping: boolean;
 }>();
