@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Card as ICard } from '@/types/uiLabels';
+import { Card as ICard } from './constants/cards';
 import Card from 'primevue/card';
 const handleClick = (link: string) => {
   window.open(link, '_blank');

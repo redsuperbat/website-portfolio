@@ -4,17 +4,15 @@
       class="rounded bg-white max-w-sm w-full p-4 flex flex-col items-center space-y-4"
     >
       <div class="flex flex-col w-full">
-        <i class="pi pi-question-circle ml-auto text-primary" />
+        <DisclaimerIcon />
         <div class="flex w-full justify-evenly pt-6 px-4">
           <img
             class="object-cover w-14 animate-bounce"
             src="@/assets/chat-1.png"
-            alt=""
           />
           <img
             class="object-cover w-14 animate-bounce animation-delay-150"
             src="@/assets/chat-2.png"
-            alt=""
           />
         </div>
       </div>
@@ -43,8 +41,9 @@ import { useFetch } from '@vueuse/core';
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { httpBaseUrl } from '@/api/urls';
-import { useToast } from 'primevue/usetoast';
 import { useI18n } from 'vue-i18n';
+import { useToast } from '@/composables/use-toast';
+import DisclaimerIcon from '@/components/DisclaimerIcon.vue';
 
 const router = useRouter();
 const toast = useToast();
@@ -62,11 +61,7 @@ async function startChat() {
     .json<{ chatId: string; senderId: string }>();
   const statusCode = res.statusCode.value ?? Infinity;
   if (statusCode >= 400) {
-    toast.add({
-      severity: 'error',
-      summary: t('cannot-create-chat'),
-      life: 3000,
-    });
+    toast(t('cannot-create-chat'), 'error');
     loading.value = false;
     return;
   }

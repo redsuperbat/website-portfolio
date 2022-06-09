@@ -1,8 +1,12 @@
 export interface GetChatDto {
   chatId: string;
+  members: Member[];
   messages: Message[];
-  senderName: string;
-  senderId: string;
+}
+
+export interface Member {
+  id: string;
+  name: string;
 }
 
 export interface Message {

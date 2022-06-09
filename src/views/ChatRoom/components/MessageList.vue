@@ -4,12 +4,10 @@
       v-for="message in messages"
       :belongs-to="message.belongsTo"
       :text="message.text"
+      :sender-name="message.senderName"
       class="mb-1"
     />
-    <div class="flex flex-col">
-      <small>{{ chattingWith }}</small>
-      <LoadingWorm v-if="isTyping" class="mt-3" />
-    </div>
+    <LoadingWorm v-if="isTyping" class="mt-3" />
   </div>
 </template>
 
@@ -19,7 +17,6 @@ import Message from './Message.vue';
 import LoadingWorm from './LoadingWorm.vue';
 
 defineProps<{
-  chattingWith: string;
   messages: IMessage[];
   isTyping: boolean;
 }>();

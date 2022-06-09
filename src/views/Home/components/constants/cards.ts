@@ -116,3 +116,5 @@ const sv = [
 ];
 
 export const cards = { en, sv };
+
+export type Card = typeof sv[0];
