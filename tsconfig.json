@@ -16,7 +16,7 @@
       "@/*": ["src/*"]
     },
     "lib": ["esnext", "dom"],
-    "types": ["vite/client", "@intlify/vite-plugin-vue-i18n/client"]
+    "types": ["vite/client", "@intlify/unplugin-vue-i18n/messages"]
   },
   "include": [
     "src/**/*.ts",
