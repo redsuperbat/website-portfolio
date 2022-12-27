@@ -51,6 +51,11 @@ const filteredRoutes = computed(() =>
 );
 
 function route(name: string) {
+  // So we can href to another route
+  const route = routes.find((it) => it.name === name);
+  if (route?.redirect && typeof route.redirect === 'string') {
+    window.location.href = route.redirect;
+  }
   router.push({ name });
 }
 </script>
