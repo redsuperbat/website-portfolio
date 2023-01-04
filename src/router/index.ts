@@ -18,7 +18,7 @@ export const routes: RouteRecordRaw[] = [
       public: true,
       i18n: 'create-chat-page',
     },
-    redirect: 'https://rsb.netterberg.com/chat',
+    redirect: 'https://chat.netterberg.me',
   },
 
   {
